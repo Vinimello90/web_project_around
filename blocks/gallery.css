@@ -14,3 +14,9 @@
   padding: 0;
   font-size: 0;
 }
+
+@media screen and (max-width: 650px) {
+  .gallery {
+    padding-top: 36px;
+  }
+}

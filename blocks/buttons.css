@@ -1,0 +1,25 @@
+.buttons {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+  transition: opacity linear 0.3s;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  opacity: 60%;
+}
+
+.buttons_edit-button {
+  border: 1px solid #fff;
+  height: 24px;
+  width: 24px;
+}
+
+.buttons_add-button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 150px;
+  height: 50px;
+  margin: 0 0 0 auto;
+}

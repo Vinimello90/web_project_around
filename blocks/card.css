@@ -28,9 +28,3 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
-.card__like-button {
-  background-color: transparent;
-  border-color: transparent;
-  padding: 0;
-}

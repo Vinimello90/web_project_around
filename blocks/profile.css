@@ -1,0 +1,46 @@
+.profile {
+  display: flex;
+  align-items: center;
+  max-width: 880px;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.profile__picture {
+  height: 127.5px;
+  width: 127.5px;
+  border-radius: 50%;
+}
+
+.profile__name-container {
+  display: flex;
+  align-items: end;
+  gap: 18px;
+}
+
+.profile__name {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 0.75;
+  margin: 0;
+}
+
+.profile__edit-button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  height: 24px;
+}
+
+.profile__about-me {
+  margin: 16px 0 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.profile__add-button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 150px;
+  height: 50px;
+  margin: 0 0 0 auto;
+}

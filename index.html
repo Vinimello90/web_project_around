@@ -8,6 +8,21 @@
   </head>
   <body>
     <div class="page">
+      <div class="popup popup__opened">
+        <div class="popup__container">
+          <h2 class="popup__title">Editar perfil</h2>
+          <button class="button button_close"></button>
+          <form action="" class="pop__form">
+            <input type="text" class="input input_popup" placeholder="Nome" />
+            <input
+              type="text"
+              class="input input_popup"
+              placeholder="Sobre mim"
+            />
+            <button type="submit" class="button button_popup">Salvar</button>
+          </form>
+        </div>
+      </div>
       <header class="header">
         <img
           src="./images/logo.svg"
@@ -24,20 +39,12 @@
           />
           <div class="profile__info">
             <div class="profile__name-container">
-              <h1 class="profile__name">Vinicius Barretto Mello</h1>
-              <button class="buttons buttons_edit-button">
-                <img
-                  src="./images/edit_icon.svg"
-                  alt=""
-                  class="buttons__edit-icon"
-                />
-              </button>
+              <h1 class="profile__name">Jacques Cousteau</h1>
+              <button class="button button_edit-button"></button>
             </div>
             <p class="profile__about-me">Explorador</p>
           </div>
-          <button class="buttons buttons_add-button">
-            <img src="./images/add_icon.svg" alt="" class="buttons__add-icon" />
-          </button>
+          <button class="button button_add-button"></button>
         </section>
         <section class="gallery">
           <ul class="gallery__cards">
@@ -49,11 +56,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Parque Nacional da Vanoise</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -66,11 +73,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Vale de Yosemite</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -83,11 +90,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Vale de Yosemite</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -100,11 +107,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Vale de Yosemite</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -117,11 +124,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Vale de Yosemite</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -134,11 +141,11 @@
               />
               <div class="card__title-container">
                 <h2 class="card__title">Vale de Yosemite</h2>
-                <button class="buttons button_like">
+                <button class="button button_like">
                   <img
                     src="./images/like_icon.svg"
                     alt=""
-                    class="buttons__like-icon"
+                    class="button__like-icon"
                   />
                 </button>
               </div>
@@ -146,7 +153,10 @@
           </ul>
         </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2024 Around The U.S.</p>
+      </footer>
+      <script src="./scripts/script.js" charset="UTF-8"></script>
     </div>
   </body>
 </html>

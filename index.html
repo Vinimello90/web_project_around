@@ -8,18 +8,24 @@
   </head>
   <body>
     <div class="page">
-      <div class="popup popup__opened">
+      <div class="popup">
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
           <button class="button button_close"></button>
           <form action="" class="pop__form">
-            <input type="text" class="input input_popup" placeholder="Nome" />
             <input
               type="text"
-              class="input input_popup"
+              class="input input_popup-name"
+              placeholder="Nome"
+            />
+            <input
+              type="text"
+              class="input input_popup-job"
               placeholder="Sobre mim"
             />
-            <button type="submit" class="button button_popup">Salvar</button>
+            <button type="submit" class="button button_popup-save">
+              Salvar
+            </button>
           </form>
         </div>
       </div>
@@ -40,11 +46,11 @@
           <div class="profile__info">
             <div class="profile__name-container">
               <h1 class="profile__name">Jacques Cousteau</h1>
-              <button class="button button_edit-button"></button>
+              <button class="button button_edit"></button>
             </div>
-            <p class="profile__about-me">Explorador</p>
+            <p class="profile__job">Explorador</p>
           </div>
-          <button class="button button_add-button"></button>
+          <button class="button button_add"></button>
         </section>
         <section class="gallery">
           <ul class="gallery__cards">

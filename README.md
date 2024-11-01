@@ -47,7 +47,7 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 - 768-1280px (785px)
 - 1280px e acima
 
-<p align="center"><img src="./images//screen-size.png" alt="" width="60%"></p>
+<p align="center"><img src="./images//screen-size.png" alt="" width="90%"></p>
 
 ### JavaScript
 

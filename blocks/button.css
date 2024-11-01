@@ -96,6 +96,7 @@
   .button_add {
     background-size: 16px;
     margin: 36px auto 0;
-    width: 282px;
+    width: 88.125vw;
+    max-width: 282px;
   }
 }

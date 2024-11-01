@@ -51,7 +51,7 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 
 ### Javascript
 
-No javascript foi usado o método `querySelector()` para selecionar os elementos manipulando o `DOM` para adicionar o método `addEventListener()` aos botões, para manipular as funções de abrir a popup para editar o perfil usando a propriedade `textContent` para manipular e adicionar o conteúdo do perfil nos inputs, salvar as alterações no nome, na profissão e mostrar uma mensagem quando a galeria dos cartões estiver vazia.
+No javascript foi usado o método `querySelector()` para selecionar os elementos manipulando o `DOM` para adicionar o método `addEventListener()` aos botões, para manipular as funções de abrir e fechar a popup para editar o perfil usando a propriedade `textContent` para manipular e adicionar o conteúdo do perfil nos inputs, salvar as alterações no nome, na profissão e mostrar uma mensagem quando a galeria dos cartões estiver vazia.
 
 - Popup para editar a Seção Profile.
 

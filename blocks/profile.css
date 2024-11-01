@@ -15,7 +15,7 @@
   margin: 0 18px 0 30px;
 }
 
-.profile__name-container {
+.profile__name-button-container {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -35,7 +35,6 @@
 .profile__job {
   margin: 16px 0 0;
   font-size: 18px;
-  line-height: 1.2;
   max-width: 350px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -43,11 +42,14 @@
 }
 
 @media screen and (max-width: 785px) {
-  .profile {
-    padding: 0 20px;
-  }
   .profile__name {
     font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .profile {
+    width: 94vw;
   }
 }
 
@@ -55,6 +57,7 @@
   .profile {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
   }
 
   .profile__info {
@@ -63,10 +66,11 @@
 
   .profile__name {
     font-size: 22px;
-    line-height: 0.8;
+    line-height: 1.21;
   }
 
   .profile__job {
+    margin-top: 14px;
     font-size: 14px;
     text-align: center;
   }

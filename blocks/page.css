@@ -4,6 +4,7 @@
   font-family: "Inter", sans-serif;
   color: #fff;
   padding: 0 35px;
+  line-height: 1.21;
 }
 
 @media screen and (max-width: 650px) {

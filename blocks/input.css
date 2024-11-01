@@ -13,13 +13,17 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
-.input_popup-name:first-of-type {
-  margin-bottom: 30px;
+.input_popup-name {
+  margin-bottom: 29.74px;
 }
 
 @media screen and (max-width: 580px) {
   .input {
-    padding-bottom: 9px;
+    padding: 9px;
     height: 26px;
+  }
+
+  .input_popup-name {
+    margin-bottom: 30px;
   }
 }

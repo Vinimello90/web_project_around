@@ -8,5 +8,6 @@
 
 .no-cards__text {
   color: #fff;
+  margin: 0;
   font-size: 18px;
 }

@@ -24,13 +24,13 @@
 .popup__title {
   color: #000;
   margin: 0;
-  line-height: 1.21;
   margin-bottom: 54px;
 }
 
 @media screen and (max-width: 580px) {
   .popup__container {
     max-width: 282px;
+    height: 322px;
     padding: 25px 22px;
   }
 

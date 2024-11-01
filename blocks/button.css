@@ -71,11 +71,23 @@
   background-image: url("../images/like_icon_active.svg");
 }
 
-@media screen and (max-width: 727px) {
+@media screen and (max-width: 580px) {
   .button_edit {
     background-size: 7.5px;
     height: 18px;
     width: 18px;
+  }
+
+  .button_close {
+    background-size: 26px;
+    height: 26px;
+    width: 26px;
+    right: 5px;
+    top: -45px;
+  }
+
+  .button_popup-save {
+    height: 46px;
   }
 
   .button_add {

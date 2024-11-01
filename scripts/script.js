@@ -6,14 +6,14 @@ let FormElement = popupElement.querySelector(".button_popup-save");
 let galleryCardsElement = document.querySelector(".gallery__cards");
 
 function HandleProfileEditPopup() {
-  if (!popupElement.classList.contains("popup__opened")) {
+  if (!popupElement.classList.contains("popup_opened")) {
     let nameInput = popupElement.querySelector(".input_popup-name");
     let jobInput = popupElement.querySelector(".input_popup-job");
     nameInput.value = element.querySelector(".profile__name").textContent;
     jobInput.value = element.querySelector(".profile__job").textContent;
-    popupElement.classList.toggle("popup__opened");
+    popupElement.classList.toggle("popup_opened");
   } else {
-    popupElement.classList.toggle("popup__opened");
+    popupElement.classList.toggle("popup_opened");
   }
 }
 

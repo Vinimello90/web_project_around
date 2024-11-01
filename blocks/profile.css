@@ -42,7 +42,16 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 727px) {
+@media screen and (max-width: 785px) {
+  .profile {
+    padding: 0 20px;
+  }
+  .profile__name {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 580px) {
   .profile {
     display: flex;
     flex-direction: column;

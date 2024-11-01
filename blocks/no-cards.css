@@ -1,0 +1,12 @@
+.no-cards {
+  display: block;
+}
+
+.no-cards_hidden {
+  display: none;
+}
+
+.no-cards__text {
+  color: #fff;
+  font-size: 18px;
+}

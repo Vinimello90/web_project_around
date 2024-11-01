@@ -23,17 +23,6 @@
   width: 24px;
 }
 
-.button_add {
-  background-image: url("../images/add_icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 22px;
-  border: 1px solid #fff;
-  width: 150px;
-  height: 50px;
-  margin: 0 0 0 auto;
-}
-
 .button_close {
   background-color: transparent;
   background-image: url("../images/close_icon.svg");
@@ -59,7 +48,30 @@
   opacity: 80%;
 }
 
-@media screen and (max-width: 650px) {
+.button_add {
+  background-image: url("../images/add_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
+  border: 1px solid #fff;
+  min-width: 150px;
+  height: 50px;
+  margin: 0 0 0 auto;
+}
+
+.button_like {
+  background-image: url("../images/like_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 22px;
+}
+
+.button_like:active {
+  background-image: url("../images/like_icon_active.svg");
+}
+
+@media screen and (max-width: 727px) {
   .button_edit {
     background-size: 7.5px;
     height: 18px;

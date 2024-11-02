@@ -2,7 +2,7 @@ const element = document.querySelector(".profile");
 const editBtnElement = element.querySelector(".button_edit");
 const popupElement = document.querySelector(".popup");
 const closeBtnElement = popupElement.querySelector(".button_close");
-const FormElement = popupElement.querySelector(".pop__form");
+const formElement = popupElement.querySelector(".pop__form");
 const galleryCardsElement = document.querySelector(".gallery__cards");
 
 function OpenProfileEditPopup() {
@@ -32,7 +32,7 @@ function handleProfileFormSubmit(evt) {
   CloseProfileEditPopup();
 }
 
-FormElement.addEventListener("submit", handleProfileFormSubmit);
+formElement.addEventListener("submit", handleProfileFormSubmit);
 
 function handleGalleryCards() {
   const cards = galleryCardsElement.querySelectorAll(".card");

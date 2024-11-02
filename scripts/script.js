@@ -1,39 +1,42 @@
-let element = document.querySelector(".profile");
-let editBtnElement = element.querySelector(".button_edit");
-let popupElement = document.querySelector(".popup");
-let closeBtnElement = popupElement.querySelector(".button_close");
-let FormElement = popupElement.querySelector(".button_popup-save");
-let galleryCardsElement = document.querySelector(".gallery__cards");
+const element = document.querySelector(".profile");
+const editBtnElement = element.querySelector(".button_edit");
+const popupElement = document.querySelector(".popup");
+const closeBtnElement = popupElement.querySelector(".button_close");
+const FormElement = popupElement.querySelector(".pop__form");
+const galleryCardsElement = document.querySelector(".gallery__cards");
 
-function HandleProfileEditPopup() {
-  if (!popupElement.classList.contains("popup_opened")) {
-    let nameInput = popupElement.querySelector(".input_popup-name");
-    let jobInput = popupElement.querySelector(".input_popup-job");
-    nameInput.value = element.querySelector(".profile__name").textContent;
-    jobInput.value = element.querySelector(".profile__job").textContent;
-    popupElement.classList.toggle("popup_opened");
-  } else {
-    popupElement.classList.toggle("popup_opened");
-  }
+function OpenProfileEditPopup() {
+  let nameInput = popupElement.querySelector(".input_popup-name");
+  let jobInput = popupElement.querySelector(".input_popup-job");
+  nameInput.value = element.querySelector(".profile__name").textContent;
+  jobInput.value = element.querySelector(".profile__job").textContent;
+  popupElement.classList.add("popup_opened");
 }
 
-editBtnElement.addEventListener("click", HandleProfileEditPopup);
-closeBtnElement.addEventListener("click", HandleProfileEditPopup);
+editBtnElement.addEventListener("click", OpenProfileEditPopup);
+
+// Separei a função de abrir da função de fechar a popup pois estava fechando caso desse mais de 1 cliquei rapido no botão de editar.
+
+function CloseProfileEditPopup() {
+  popupElement.classList.remove("popup_opened");
+}
+
+closeBtnElement.addEventListener("click", CloseProfileEditPopup);
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  let nameInput = popupElement.querySelector(".input_popup-name").value;
-  let jobInput = popupElement.querySelector(".input_popup-job").value;
+  const nameInput = popupElement.querySelector(".input_popup-name").value;
+  const jobInput = popupElement.querySelector(".input_popup-job").value;
   element.querySelector(".profile__name").textContent = nameInput;
   element.querySelector(".profile__job").textContent = jobInput;
-  HandleProfileEditPopup();
+  CloseProfileEditPopup();
 }
 
-FormElement.addEventListener("click", handleProfileFormSubmit);
+FormElement.addEventListener("submit", handleProfileFormSubmit);
 
 function handleGalleryCards() {
-  let cards = galleryCardsElement.querySelectorAll(".card");
-  let noCards = galleryCardsElement.querySelector(".no-cards");
+  const cards = galleryCardsElement.querySelectorAll(".card");
+  const noCards = galleryCardsElement.querySelector(".no-cards");
   if (cards.length === 0) {
     noCards.classList.remove("no-cards_hidden");
   } else {

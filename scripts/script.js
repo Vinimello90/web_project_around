@@ -6,8 +6,8 @@ const FormElement = popupElement.querySelector(".pop__form");
 const galleryCardsElement = document.querySelector(".gallery__cards");
 
 function OpenProfileEditPopup() {
-  let nameInput = popupElement.querySelector(".input_popup-name");
-  let jobInput = popupElement.querySelector(".input_popup-job");
+  const nameInput = popupElement.querySelector(".input_popup-name");
+  const jobInput = popupElement.querySelector(".input_popup-job");
   nameInput.value = element.querySelector(".profile__name").textContent;
   jobInput.value = element.querySelector(".profile__job").textContent;
   popupElement.classList.add("popup_opened");

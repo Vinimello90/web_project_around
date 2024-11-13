@@ -66,72 +66,6 @@
         </section>
         <section class="gallery">
           <ul class="gallery__cards">
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1648515391046-078cc3b4be92?q=80&w=1996&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Jardim dos Deuses"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Jardim dos Deuses</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1506318164473-2dfd3ede3623?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Cume da montanha cinzenta"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Cume da montanha cinzenta</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1596625820723-f0f481ff80be?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Árvore de Josué"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Árvore de Josué</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1670601520822-b4f0180b6815?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Monte Baker"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Monte Baker</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1721697310377-1a70ae366cb2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Parque Nacional de Yosemite"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Parque Nacional de Yosemite</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="https://images.unsplash.com/photo-1670844699961-f1eb1793987a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Lago tenaya"
-                class="card__picture"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Lago tenaya</h2>
-                <button class="button button_like"></button>
-              </div>
-            </li>
             <li class="no-cards">
               <p class="no-cards__text">Ainda não há cartões</p>
             </li>
@@ -141,6 +75,16 @@
       <footer class="footer">
         <p class="footer__copyright">&#169; 2024 Around The U.S.</p>
       </footer>
+      <template id="card-template">
+        <li class="card">
+          <img src="" alt="" class="card__picture" />
+          <button class="button button_remove"></button>
+          <div class="card__title-container">
+            <h2 class="card__title"></h2>
+            <button class="button button_like"></button>
+          </div>
+        </li>
+      </template>
       <script src="./scripts/script.js" charset="UTF-8"></script>
     </div>
   </body>

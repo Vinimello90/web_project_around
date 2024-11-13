@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   width: 282px;
   border-radius: 10px;
 }
@@ -22,12 +23,11 @@
 }
 
 .card__title {
-  width: 100%;
+  width: 224px;
   font-size: 24px;
   color: #000;
   margin: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  box-sizing: border-box;
 }

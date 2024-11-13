@@ -15,9 +15,7 @@
 }
 
 .button_edit {
-  background-image: url("../images/edit_icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("../images/edit_icon.svg") center no-repeat;
   background-size: 10px;
   border: 1px solid #fff;
   height: 24px;
@@ -25,10 +23,7 @@
 }
 
 .button_close {
-  background-color: transparent;
-  background-image: url("../images/close_icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("../images/close_icon.svg") center no-repeat;
   height: 40px;
   width: 40px;
   position: absolute;
@@ -50,9 +45,7 @@
 }
 
 .button_add {
-  background-image: url("../images/add_icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("../images/add_icon.svg") center no-repeat;
   background-size: 22px;
   border: 1px solid #fff;
   width: 150px;
@@ -60,16 +53,30 @@
   margin: 0 0 0 auto;
 }
 
+.button_remove {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background: url("../images/remove_icon.svg") center no-repeat;
+  background-size: 19.3px 18px;
+  height: 19.3px;
+  width: 18px;
+}
+
 .button_like {
-  background-image: url("../images/like_icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 20px;
-  width: 23px;
+  background: url("../images/like_icon.svg") center no-repeat;
+  background-size: 21px 19px;
+  height: 19px;
+  width: 21px;
+  transition: background linear 0.3s;
 }
 
 .button_like:active {
-  background-image: url("../images/like_icon_active.svg");
+  background: url("../images/like_icon_active.svg") center no-repeat;
+}
+
+.button_like_activate {
+  background: url("../images/like_icon_active.svg") center no-repeat;
 }
 
 @media screen and (max-width: 590px) {

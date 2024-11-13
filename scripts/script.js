@@ -74,7 +74,6 @@ function closePopup() {
 closeBtnElement.addEventListener("click", closePopup);
 
 function addCard(titleValue, linkValue) {
-  console.log("teste");
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   cardElement

@@ -70,7 +70,7 @@ function addCard(titleValue, linkValue) {
     evt.target.parentElement.remove();
     handleRenderNoCards();
   });
-  cardImageElement.addEventListener("click", function () {
+  cardImageElement.addEventListener("click", () => {
     const popupImage = document.querySelector(".popup_image");
     const imgElement = popupImage.querySelector(".popup__img");
     const titleElement = popupImage.querySelector(".popup__title");

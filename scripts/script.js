@@ -107,8 +107,7 @@ function handleAddCardFormSubmit(evt) {
     popupAddCardElement.querySelector(".input_popup-title").value;
   const linkValue =
     popupAddCardElement.querySelector(".input_popup-link").value;
-  const cardElement = addCard(titleValue, linkValue);
-  galleryCardsElement.prepend(cardElement);
+  galleryCardsElement.prepend(addCard(titleValue, linkValue));
   popupEditProfileForm.classList.remove("popup_opened");
 }
 

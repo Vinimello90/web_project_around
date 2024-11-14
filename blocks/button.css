@@ -31,7 +31,7 @@
   right: -40px;
 }
 
-.button_popup-save {
+.button_popup-submit {
   background-color: #000;
   color: #fff;
   border-radius: 2px;
@@ -40,7 +40,7 @@
   margin: 48px 0 0 auto;
 }
 
-.button_popup-save:hover {
+.button_popup-submit:hover {
   opacity: 80%;
 }
 
@@ -94,7 +94,15 @@
     top: -45px;
   }
 
-  .button_popup-save {
+  .button_close-card-image {
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+    top: -30.21px;
+    right: -30.21px;
+  }
+
+  .button_popup-submit {
     height: 46px;
     font-size: 14px;
     margin-top: 46px;

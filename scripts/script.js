@@ -1,9 +1,14 @@
 const element = document.querySelector(".profile");
 const editBtnElement = element.querySelector(".button_edit");
 const addBtnElement = element.querySelector(".button_add");
-const popupElement = document.querySelector(".popup");
-const closeBtnElement = popupElement.querySelector(".button_close");
-const formElement = popupElement.querySelector(".pop__form");
+const popupEditProfileElement = document.querySelector(
+  ".popup_form-edit-profile"
+);
+const popupAddCardElement = document.querySelector(".popup_form-add-card");
+const popupEditProfileForm =
+  popupEditProfileElement.querySelector(".pop__form");
+const popupAddCardForm = popupAddCardElement.querySelector(".pop__form");
+const closeBtnElement = document.querySelectorAll(".button_close");
 const galleryCardsElement = document.querySelector(".gallery__cards");
 const initialCards = [
   {
@@ -32,61 +37,46 @@ const initialCards = [
   },
 ];
 
-function openPopup(evt) {
-  const nameInput = popupElement.querySelector(".input_popup-name");
-  const jobInput = popupElement.querySelector(".input_popup-job");
-  if (evt.target.classList.contains("button_edit")) {
-    nameInput.value = element.querySelector(".profile__name").textContent;
-    jobInput.value = element.querySelector(".profile__job").textContent;
-    popupElement.classList.add("popup_opened");
-  } else {
-    popupElement.querySelector(".popup__title").textContent = "Novo local";
-    popupElement
-      .querySelector(".input_popup-name")
-      .setAttribute("placeholder", "Título");
-    popupElement
-      .querySelector(".input_popup-job")
-      .setAttribute("placeholder", "Link de imagem");
-    popupElement.querySelector(".button_popup-save").textContent = "Criar";
-    popupElement.classList.add("popup_opened");
-  }
-}
+editBtnElement.addEventListener("click", () => {
+  popupEditProfileElement.classList.add("popup_opened");
+  const nameValue = element.querySelector(".profile__name").textContent;
+  const jobValue = element.querySelector(".profile__job").textContent;
+  const nameInput = popupEditProfileElement.querySelector(".input_popup-name");
+  const jobInput = popupEditProfileElement.querySelector(".input_popup-job");
+  nameInput.value = nameValue;
+  jobInput.value = jobValue;
+});
 
-editBtnElement.addEventListener("click", openPopup);
-addBtnElement.addEventListener("click", openPopup);
+addBtnElement.addEventListener("click", () => {
+  popupAddCardElement.classList.add("popup_opened");
+});
 
-function closePopup() {
-  const nameInput = popupElement.querySelector(".input_popup-name");
-  const jobInput = popupElement.querySelector(".input_popup-job");
-  popupElement.classList.remove("popup_opened");
-  nameInput.value = "";
-  jobInput.value = "";
-  popupElement.querySelector(".popup__title").textContent = "Editar perfil";
-  popupElement.querySelector(".button_popup-save").textContent = "Salvar";
-  popupElement
-    .querySelector(".input_popup-name")
-    .setAttribute("placeholder", "Nome");
-  popupElement
-    .querySelector(".input_popup-job")
-    .setAttribute("placeholder", "Sobre mim");
-}
-
-closeBtnElement.addEventListener("click", closePopup);
+closeBtnElement.forEach(function (btn) {
+  btn.addEventListener("click", (evt) => {
+    const popupElement = evt.target.parentElement.parentElement;
+    popupElement.classList.remove("popup_opened");
+  });
+});
 
 function addCard(titleValue, linkValue) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
-  cardElement
-    .querySelector(".card__picture")
-    .setAttribute("src", `${linkValue}`);
-  cardElement
-    .querySelector(".card__picture")
-    .setAttribute("alt", `Imagem de ${titleValue}`);
+  const cardImageElement = cardElement.querySelector(".card__image");
+  cardImageElement.setAttribute("src", `${linkValue}`);
+  cardImageElement.setAttribute("alt", `Imagem de ${titleValue}`);
   cardElement.querySelector(".card__title").textContent = titleValue;
   const removeButton = cardElement.querySelector(".button_remove");
   removeButton.addEventListener("click", function (evt) {
     evt.target.parentElement.remove();
     handleRenderNoCards();
+  });
+  cardImageElement.addEventListener("click", function () {
+    const popupImage = document.querySelector(".popup_image");
+    const imgElement = popupImage.querySelector(".popup__img");
+    const titleElement = popupImage.querySelector(".popup__title");
+    imgElement.setAttribute("src", `${linkValue}`);
+    titleElement.textContent = titleValue;
+    popupImage.classList.add("popup_opened");
   });
   const likeBtn = cardElement.querySelector(".button_like");
   likeBtn.addEventListener("click", function (evt) {
@@ -99,27 +89,30 @@ initialCards.forEach(function (card) {
   galleryCardsElement.prepend(addCard(card.title, card.link));
 });
 
-function handleFormSubmit(evt) {
-  const popUpTitle = popupElement.querySelector(".popup__title").textContent;
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  switch (popUpTitle) {
-    case "Editar perfil":
-      const nameInput = popupElement.querySelector(".input_popup-name").value;
-      const jobInput = popupElement.querySelector(".input_popup-job").value;
-      element.querySelector(".profile__name").textContent = nameInput;
-      element.querySelector(".profile__job").textContent = jobInput;
-      break;
-    case "Novo local":
-      const titleInput = popupElement.querySelector(".input_popup-name").value;
-      const linkInput = popupElement.querySelector(".input_popup-job").value;
-      const cardElement = addCard(titleInput, linkInput);
-      galleryCardsElement.prepend(cardElement);
-      break;
-  }
-  closePopup();
+  const nameInput =
+    popupEditProfileForm.querySelector(".input_popup-name").value;
+  const jobInput = popupEditProfileForm.querySelector(".input_popup-job").value;
+  element.querySelector(".profile__name").textContent = nameInput;
+  element.querySelector(".profile__job").textContent = jobInput;
+  popupEditProfileElement.classList.remove("popup_opened");
 }
 
-formElement.addEventListener("submit", handleFormSubmit);
+popupEditProfileForm.addEventListener("submit", handleProfileFormSubmit);
+
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  const titleValue =
+    popupAddCardElement.querySelector(".input_popup-title").value;
+  const linkValue =
+    popupAddCardElement.querySelector(".input_popup-link").value;
+  const cardElement = addCard(titleValue, linkValue);
+  galleryCardsElement.prepend(cardElement);
+  popupEditProfileForm.classList.remove("popup_opened");
+}
+
+popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 function handleRenderNoCards() {
   const cards = galleryCardsElement.querySelectorAll(".card");

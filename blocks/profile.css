@@ -41,6 +41,17 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 1024px) {
+  .profile {
+    width: 92vw;
+  }
+
+  .profile__job {
+    font-size: 14px;
+    max-width: 200px;
+  }
+}
+
 @media screen and (max-width: 785px) {
   .profile__name {
     font-size: 24px;

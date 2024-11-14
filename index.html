@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="page">
-      <div class="popup">
+      <div class="popup popup_form-edit-profile">
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
           <button class="button button_close"></button>
@@ -35,10 +35,44 @@
               placeholder="Sobre mim"
               required
             />
-            <button type="submit" class="button button_popup-save">
+            <button type="submit" class="button button_popup-submit">
               Salvar
             </button>
           </form>
+        </div>
+      </div>
+      <div class="popup popup_form-add-card">
+        <div class="popup__container">
+          <h2 class="popup__title">Novo local</h2>
+          <button class="button button_close"></button>
+          <form class="pop__form">
+            <input
+              type="text"
+              class="input input_popup-title"
+              placeholder="Título"
+              required
+            />
+            <input
+              type="text"
+              class="input input_popup-link"
+              placeholder="Link de imagem"
+              required
+            />
+            <button type="submit" class="button button_popup-submit">
+              Criar
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_image">
+        <div class="popup__container popup__container_image">
+          <button class="button button_close button_close-image"></button>
+          <img
+            src="https://images.unsplash.com/photo-1670844699961-f1eb1793987a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="popup__img"
+            alt="Lago tenaya"
+          />
+          <p class="popup__title popup__title_image">Lago tenaya</p>
         </div>
       </div>
       <header class="header">
@@ -77,7 +111,7 @@
       </footer>
       <template id="card-template">
         <li class="card">
-          <img src="" alt="" class="card__picture" />
+          <img src="" alt="" class="card__image" />
           <button class="button button_remove"></button>
           <div class="card__title-container">
             <h2 class="card__title"></h2>

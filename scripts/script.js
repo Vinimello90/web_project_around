@@ -6,8 +6,8 @@ const popupEditProfileElement = document.querySelector(
 );
 const popupAddCardElement = document.querySelector(".popup_form-add-card");
 const popupEditProfileForm =
-  popupEditProfileElement.querySelector(".pop__form");
-const popupAddCardForm = popupAddCardElement.querySelector(".pop__form");
+  popupEditProfileElement.querySelector(".popup__form");
+const popupAddCardForm = popupAddCardElement.querySelector(".popup__form");
 const closeBtnElement = document.querySelectorAll(".button_close");
 const galleryCardsElement = document.querySelector(".gallery__cards");
 const initialCards = [

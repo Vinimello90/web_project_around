@@ -51,15 +51,21 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 
 ### JavaScript
 
-No JavaScript foi utilizado o método `querySelector()` para selecionar os elementos e manipular o `DOM` adicionando o método `addEventListener()` aos botões para gerenciar as funções de abrir e fechar a popup para editar o perfil e exibir uma mensagem quando a galeria de cartões estiver vazia. A propriedade `textContent` foi usada para manipular e adicionar o conteúdo do perfil nos inputs quando abrir a popup, e exibir no perfil as alterações feitas no formulário após salvar.
+No JavaScript foi utilizado o método `querySelector()` para selecionar os elementos e manipular o `DOM` adicionando o método `addEventListener()` aos botões para gerenciar as funções de abrir e fechar a popup para editar o perfil. A propriedade `textContent` foi usada para manipular e adicionar o conteúdo do perfil nos inputs quando abrir a popup, e exibir no perfil as alterações feitas no formulário após salvar, o mesmo foi aplicado para o formulário para adicionar novos cartões a galeria, foi usado o elemento `<template>` para criar o layout dos cartões, clonar com o método `cloneNode(true)` e adicionar o título e link da imagem passado através do formulário ao clone do cartão e adicionar o novo cartão ao topo da galeria usando o método `prepend()`.
 
-- Popup para editar a seção "profile".
+- Popup para editar a seção "profile" e para adicionar novos cartões a seção da "gallery".
 
-<img src="./images/profile-edit.png" alt="" width="100%">
+<img src="./images/profile-edit.png" alt="" width="49.8%"> <img src="./images/add-card.png" alt="" width="49.4%">
 
 <br>
 
-- Mensagem exibida quando a galeria de cartões estiver vazia.
+- Foi usado uma função para ativar o botão do like ao clicar e foi adicionado um botão com a função de remover o cartão desejado ao clicar.
+
+<p align="center"><img src="./images/cards_like_remove_btn.png" alt="" width="60%"></p>
+
+<br>
+
+- Foi usada uma função para verificar os cartões e caso não tenha nenhum cartão sera exibido uma mensagem.
 
 <img src="./images/no-cards.png" alt="" width="100%">
 
@@ -67,5 +73,4 @@ No JavaScript foi utilizado o método `querySelector()` para selecionar os eleme
 
 ## Planos de melhoria do projeto
 
-- Adicionar função para adicionar e remover os cartões.
-- Adicionar função ao botão de "curtir".
+- Backend para salvar as alterações feita pelo usuário em um banco de dados.

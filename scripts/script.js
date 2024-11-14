@@ -85,7 +85,7 @@ function addCard(titleValue, linkValue) {
   return cardElement;
 }
 
-initialCards.forEach(function (card) {
+initialCards.forEach((card) => {
   galleryCardsElement.prepend(addCard(card.title, card.link));
 });
 

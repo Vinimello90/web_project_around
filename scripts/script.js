@@ -62,28 +62,31 @@ function addCard(titleValue, linkValue) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
-  cardImageElement.setAttribute("src", `${linkValue}`);
-  cardImageElement.setAttribute("alt", `Imagem de ${titleValue}`);
+  cardImageElement.src = linkValue;
+  cardImageElement.alt = titleValue;
   cardElement.querySelector(".card__title").textContent = titleValue;
-  const removeButton = cardElement.querySelector(".button_remove");
-  removeButton.addEventListener("click", function (evt) {
-    evt.target.parentElement.remove();
-    handleRenderNoCards();
-  });
   cardImageElement.addEventListener("click", () => {
     const popupImage = document.querySelector(".popup_image");
     const imgElement = popupImage.querySelector(".popup__img");
     const titleElement = popupImage.querySelector(".popup__title");
-    imgElement.setAttribute("src", `${linkValue}`);
+    imgElement.src = linkValue;
     titleElement.textContent = titleValue;
     popupImage.classList.add("popup_opened");
   });
-  const likeBtn = cardElement.querySelector(".button_like");
-  likeBtn.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("button_like_activate");
-  });
   return cardElement;
 }
+
+galleryCardsElement.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("button_remove")) {
+    evt.target.parentElement.remove();
+    handleRenderNoCards();
+    return;
+  }
+  if (evt.target.classList.contains("button_like")) {
+    evt.target.classList.toggle("button_like_activate");
+    return;
+  }
+});
 
 initialCards.forEach((card) => {
   galleryCardsElement.prepend(addCard(card.title, card.link));

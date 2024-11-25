@@ -18,28 +18,34 @@
   </head>
   <body>
     <div class="page">
-      <div class="popup popup_form-edit-profile">
+      <div class="popup popup_form-profile">
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
           <button class="button button_close"></button>
-          <form class="popup__form">
+          <form class="popup__form" name="profile" novalidate>
             <fieldset class="popup__set">
               <input
                 type="text"
                 class="input input_popup-name"
                 placeholder="Nome"
                 name="name"
-                id="name"
+                id="name-input"
+                minlength="2"
+                maxlength="40"
                 required
               />
+              <span class="popup__input-error name-input-error"></span>
               <input
                 type="text"
                 class="input input_popup-job"
                 placeholder="Sobre mim"
                 name="job"
-                id="job"
+                id="job-input"
+                minlength="2"
+                maxlength="200"
                 required
               />
+              <span class="popup__input-error job-input-error"></span>
               <button type="submit" class="button button_popup-submit">
                 Salvar
               </button>
@@ -51,24 +57,28 @@
         <div class="popup__container">
           <h2 class="popup__title">Novo local</h2>
           <button class="button button_close"></button>
-          <form class="popup__form">
+          <form class="popup__form" name="add" novalidate>
             <fieldset class="popup__set">
               <input
                 type="text"
                 class="input input_popup-title"
                 placeholder="Título"
                 name="title"
-                id="title"
+                id="title-input"
+                minlength="2"
+                maxlength="30"
                 required
               />
+              <span class="popup__input-error title-input-error"></span>
               <input
-                type="text"
+                type="url"
                 class="input input_popup-link"
                 placeholder="Link de imagem"
-                name="link"
+                name="link-input"
                 id="link"
                 required
               />
+              <span class="popup__input-error link-input-error"></span>
               <button type="submit" class="button button_popup-submit">
                 Criar
               </button>

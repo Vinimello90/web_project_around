@@ -3,7 +3,6 @@
   height: 27.26px;
   font-size: 14px;
   line-height: 1.21;
-  width: 100%;
   border: none;
   padding-bottom: 13.34px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -13,8 +12,20 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
-.input:first-of-type {
-  margin-bottom: 29.74px;
+.input__popup_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.input__popup-error {
+  position: absolute;
+  top: calc(100% + 5px);
+  color: #ff0000;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.input__popup-error_visible {
+  visibility: visible;
 }
 
 @media screen and (max-width: 590px) {
@@ -23,7 +34,7 @@
     height: 26px;
   }
 
-  .input:first-of-type {
-    margin-bottom: 30px;
+  .input__popup-error {
+    font-size: 10px;
   }
 }

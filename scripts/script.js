@@ -33,6 +33,8 @@ const initialCards = [
   },
 ];
 
+//
+
 profileBtnElement.addEventListener("click", () => {
   const nameValue = profileElement.querySelector(".profile__name").textContent;
   const jobValue = profileElement.querySelector(".profile__job").textContent;
@@ -85,18 +87,6 @@ function addCard(titleValue, linkValue) {
   return cardElement;
 }
 
-galleryCardsElement.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("button_remove")) {
-    evt.target.parentElement.remove();
-    handleRenderNoCards();
-    return;
-  }
-  if (evt.target.classList.contains("button_like")) {
-    evt.target.classList.toggle("button_like_activate");
-    return;
-  }
-});
-
 initialCards.forEach((card) => {
   galleryCardsElement.prepend(addCard(card.title, card.link));
 });
@@ -108,6 +98,7 @@ function handleProfileFormSubmit(evt) {
   profileElement.querySelector(".profile__name").textContent = nameValue;
   profileElement.querySelector(".profile__job").textContent = jobValue;
   closePopup(evt);
+  document.forms.profile.reset();
 }
 
 popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
@@ -118,10 +109,22 @@ function handleAddCardFormSubmit(evt) {
   const linkValue = document.forms.add.link.value;
   galleryCardsElement.prepend(addCard(titleValue, linkValue));
   closePopup(evt);
-  document.add.reset();
+  document.forms.add.reset();
 }
 
 popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);
+
+function handleCardButtons(evt) {
+  if (evt.target.classList.contains("button_remove")) {
+    evt.target.parentElement.remove();
+    handleRenderNoCards();
+  }
+  if (evt.target.classList.contains("button_like")) {
+    evt.target.classList.toggle("button_like_activate");
+  }
+}
+
+galleryCardsElement.addEventListener("click", handleCardButtons);
 
 function handleRenderNoCards() {
   const cards = galleryCardsElement.querySelectorAll(".card");

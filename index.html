@@ -23,29 +23,37 @@
           <h2 class="popup__title">Editar perfil</h2>
           <button class="button button_close"></button>
           <form class="popup__form" name="profile" novalidate>
-            <fieldset class="popup__set">
-              <input
-                type="text"
-                class="input input_popup-name"
-                placeholder="Nome"
-                name="name"
-                id="name-input"
-                minlength="2"
-                maxlength="40"
-                required
-              />
-              <span class="popup__input-error name-input-error"></span>
-              <input
-                type="text"
-                class="input input_popup-job"
-                placeholder="Sobre mim"
-                name="job"
-                id="job-input"
-                minlength="2"
-                maxlength="200"
-                required
-              />
-              <span class="popup__input-error job-input-error"></span>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-name"
+                  placeholder="Nome"
+                  name="name"
+                  id="error_name"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="input__popup-error input__popup-error_name"
+                  >Preencha este campo.
+                </span>
+              </label>
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-job"
+                  placeholder="Sobre mim"
+                  name="job"
+                  id="error_job"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                />
+                <span class="input__popup-error input__popup-error_job"
+                  >Preencha este campo.
+                </span>
+              </label>
               <button type="submit" class="button button_popup-submit">
                 Salvar
               </button>
@@ -58,27 +66,35 @@
           <h2 class="popup__title">Novo local</h2>
           <button class="button button_close"></button>
           <form class="popup__form" name="add" novalidate>
-            <fieldset class="popup__set">
-              <input
-                type="text"
-                class="input input_popup-title"
-                placeholder="Título"
-                name="title"
-                id="title-input"
-                minlength="2"
-                maxlength="30"
-                required
-              />
-              <span class="popup__input-error title-input-error"></span>
-              <input
-                type="url"
-                class="input input_popup-link"
-                placeholder="Link de imagem"
-                name="link-input"
-                id="link"
-                required
-              />
-              <span class="popup__input-error link-input-error"></span>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-title"
+                  placeholder="Título"
+                  name="title"
+                  id="error_title"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+                <span class="input__popup-error input__popup-error_title">
+                  Preencha este campo.
+                </span>
+              </label>
+              <label class="popup__form-field">
+                <input
+                  type="url"
+                  class="input input_popup-link"
+                  placeholder="Link de imagem"
+                  name="link"
+                  id="error_link"
+                  required
+                />
+                <span class="input__popup-error input__popup-error_link">
+                  Preencha este campo.
+                </span>
+              </label>
               <button type="submit" class="button button_popup-submit">
                 Criar
               </button>
@@ -141,6 +157,7 @@
           </div>
         </li>
       </template>
+      <script src="./scripts/validate.js" charset="UTF-8"></script>
       <script src="./scripts/script.js" charset="UTF-8"></script>
     </div>
   </body>

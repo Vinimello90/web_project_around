@@ -44,6 +44,17 @@
   opacity: 80%;
 }
 
+.button_popup-submit_disabled:disabled {
+  cursor: default;
+  background-color: transparent;
+  border: 1px solid #00000033;
+  color: #00000033;
+}
+
+.button_popup-submit_disabled:hover {
+  opacity: 100%;
+}
+
 .button_add {
   background: url("../images/add_icon.svg") center no-repeat;
   background-size: 22px;

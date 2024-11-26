@@ -36,12 +36,15 @@ const initialCards = [
 //
 
 profileBtnElement.addEventListener("click", () => {
-  const nameValue = profileElement.querySelector(".profile__name").textContent;
-  const jobValue = profileElement.querySelector(".profile__job").textContent;
   const nameInput = document.forms.profile.name;
   const jobInput = document.forms.profile.job;
-  nameInput.value = nameValue;
-  jobInput.value = jobValue;
+  nameInput.value = profileElement.querySelector(".profile__name").textContent;
+  jobInput.value = profileElement.querySelector(".profile__job").textContent;
+  const inputList = Array.from(popupProfileForm.querySelectorAll(".input"));
+  toggleButtonState(inputList, popupProfileForm, {
+    submitButtonSelector: ".button_popup-submit",
+    inactiveButtonClass: "button_popup-submit_disabled",
+  });
   popupProfileElement.classList.add("popup_opened");
   popupProfileElement.addEventListener("click", closePopup);
   document.addEventListener("keydown", closePopup);
@@ -55,6 +58,7 @@ addBtnElement.addEventListener("click", () => {
 
 function closePopup(evt) {
   const popupElement = document.querySelector(".popup_opened");
+  const formElement = popupElement.querySelector(".popup__form");
   if (
     evt.key === "Escape" ||
     evt.target.classList.contains("button_close") ||
@@ -64,6 +68,14 @@ function closePopup(evt) {
     popupElement.classList.remove("popup_opened");
     popupElement.removeEventListener("click", closePopup);
     document.removeEventListener("keydown", closePopup);
+    document.forms.add.reset();
+    resetInputValidation(formElement, {
+      inputSelector: ".input",
+      submitButtonSelector: ".button_popup-submit",
+      inactiveButtonClass: "button_popup-submit_disabled",
+      inputErrorClass: "input__popup_type_error",
+      errorClass: "input__popup-error_visible",
+    });
   }
 }
 
@@ -98,7 +110,6 @@ function handleProfileFormSubmit(evt) {
   profileElement.querySelector(".profile__name").textContent = nameValue;
   profileElement.querySelector(".profile__job").textContent = jobValue;
   closePopup(evt);
-  document.forms.profile.reset();
 }
 
 popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
@@ -109,7 +120,6 @@ function handleAddCardFormSubmit(evt) {
   const linkValue = document.forms.add.link.value;
   galleryCardsElement.prepend(addCard(titleValue, linkValue));
   closePopup(evt);
-  document.forms.add.reset();
 }
 
 popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);

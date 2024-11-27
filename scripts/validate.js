@@ -21,9 +21,7 @@ const hideInputError = (inputElement, errorElement, classObj) => {
 };
 
 const checkInputValidity = (formElement, inputElement, classObj) => {
-  const errorElement = formElement.querySelector(
-    `.input__popup-${inputElement.id}`
-  );
+  const errorElement = formElement.querySelector(`.popup__${inputElement.id}`);
   if (!inputElement.validity.valid) {
     showInputError(
       inputElement,
@@ -80,5 +78,5 @@ enableValidation({
   submitButtonSelector: ".button_popup-submit",
   inactiveButtonClass: "button_popup-submit_disabled",
   inputErrorClass: "input__popup_type_error",
-  errorClass: "input__popup-error_visible",
+  errorClass: "popup__error_visible",
 });

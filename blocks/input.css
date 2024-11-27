@@ -16,18 +16,6 @@
   border-bottom: 1px solid #ff0000;
 }
 
-.input__popup-error {
-  position: absolute;
-  top: calc(100% + 5px);
-  color: #ff0000;
-  font-size: 12px;
-  visibility: hidden;
-}
-
-.input__popup-error_visible {
-  visibility: visible;
-}
-
 @media screen and (max-width: 590px) {
   .input {
     padding: 9px;

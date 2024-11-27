@@ -51,6 +51,19 @@
   color: #000;
   margin: 0 0 54px 0;
 }
+
+.popup__error {
+  position: absolute;
+  top: calc(100% + 5px);
+  color: #ff0000;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.popup__error {
+  visibility: visible;
+}
+
 .popup__title_image {
   font-size: 12px;
   color: white;

@@ -8,34 +8,31 @@ const resetInputValidation = (formElement, classObj) => {
   });
 };
 
-const showInputError = (formElement, inputElement, errorMessage, classObj) => {
-  const errorElement = formElement.querySelector(
-    `.input__popup-${inputElement.id}`
-  );
+const showInputError = (inputElement, errorMessage, errorElement, classObj) => {
   errorElement.textContent = errorMessage;
   errorElement.classList.add(classObj.errorClass);
   inputElement.classList.add(classObj.inputErrorClass);
 };
 
-const hideInputError = (formElement, inputElement, classObj) => {
-  const errorElement = formElement.querySelector(
-    `.input__popup-${inputElement.id}`
-  );
+const hideInputError = (inputElement, errorElement, classObj) => {
   inputElement.classList.remove(classObj.inputErrorClass);
   errorElement.textContent = "";
   errorElement.classList.remove(classObj.errorClass);
 };
 
 const checkInputValidity = (formElement, inputElement, classObj) => {
+  const errorElement = formElement.querySelector(
+    `.input__popup-${inputElement.id}`
+  );
   if (!inputElement.validity.valid) {
     showInputError(
-      formElement,
       inputElement,
       inputElement.validationMessage,
+      errorElement,
       classObj
     );
   } else {
-    hideInputError(formElement, inputElement, classObj);
+    hideInputError(inputElement, errorElement, classObj);
   }
 };
 

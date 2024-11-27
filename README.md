@@ -61,13 +61,19 @@ No JavaScript foi utilizado o método `querySelector()` para selecionar os eleme
 
 - Foi usado uma função para ativar o botão do like ao clicar e foi adicionado um botão com a função de remover o cartão desejado ao clicar.
 
-<p align="center"><img src="./images/cards_like_remove_btn.png" alt="" width="60%"></p>
+<p align="center"><img src="./images/cards_like_remove_btn.png" alt="" width="100%"></p>
 
 <br>
 
 - Foi usada uma função para verificar os cartões e caso não tenha nenhum cartão sera exibido uma mensagem.
 
 <img src="./images/no-cards.png" alt="" width="100%">
+
+<br>
+
+- Foram usadas funções para validar os formulários e aprimorar a UX do popup, desabilitando o botão de `submit`, sublinhando de vermelho o `input` inválido e exibindo uma mensagem abaixo do `input` explicando o que está invalidando o formulário para que o botão de `submit` seja habilitado.
+
+<img src="./images/popup_validation.png" alt="" width="100%">
 
 #### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around/">aqui</a>.
 

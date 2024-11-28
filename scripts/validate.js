@@ -4,7 +4,10 @@ const resetInputValidation = (formElement, classObj) => {
   );
   toggleButtonState(inputList, formElement, classObj);
   inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement, classObj);
+    const errorElement = formElement.querySelector(
+      `.popup__${inputElement.id}`
+    );
+    hideInputError(inputElement, errorElement, classObj);
   });
 };
 

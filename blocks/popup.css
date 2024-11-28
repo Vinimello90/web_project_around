@@ -60,7 +60,7 @@
   visibility: hidden;
 }
 
-.popup__error {
+.popup__error_visible {
   visibility: visible;
 }
 

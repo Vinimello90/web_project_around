@@ -17,6 +17,12 @@ const showInputError = (inputElement, errorMessage, errorElement, classObj) => {
   inputElement.classList.add(classObj.inputErrorClass);
 };
 
+/* Corrigido, foi um erro com o nome da classe da mensagem de erro, 
+estava com o nome do bloco do input, e antes de enviar o projeto mudei 
+para ficar com nome correto seguindo a metologia BEM e acabou mudando o 
+nome da classe do CSS para deixar a mensagem visivel junto, resultando 
+nesse bug */
+
 const hideInputError = (inputElement, errorElement, classObj) => {
   inputElement.classList.remove(classObj.inputErrorClass);
   errorElement.textContent = "";

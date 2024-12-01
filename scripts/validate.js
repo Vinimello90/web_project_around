@@ -18,9 +18,9 @@ const showInputError = (inputElement, errorMessage, errorElement, classObj) => {
 };
 
 const hideInputError = (inputElement, errorElement, classObj) => {
-  inputElement.classList.remove(classObj.inputErrorClass);
   errorElement.textContent = "";
   errorElement.classList.remove(classObj.errorClass);
+  inputElement.classList.remove(classObj.inputErrorClass);
 };
 
 const checkInputValidity = (formElement, inputElement, classObj) => {

@@ -74,7 +74,7 @@ function closePopup(evt) {
       submitButtonSelector: ".button_popup-submit",
       inactiveButtonClass: "button_popup-submit_disabled",
       inputErrorClass: "input__popup_type_error",
-      errorClass: "input__popup-error_visible",
+      errorClass: "popup__error_visible",
     });
   }
 }

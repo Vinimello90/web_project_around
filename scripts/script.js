@@ -59,7 +59,12 @@ addBtnElement.addEventListener("click", () => {
 function closePopup(evt) {
   const popupElement = document.querySelector(".popup_opened");
   const formElement = popupElement.querySelector(".popup__form");
-  if (
+  if (popupElement.classList.contains("popup_image")) {
+    popupElement.classList.remove("popup_opened");
+    popupElement.removeEventListener("click", closePopup);
+    document.removeEventListener("keydown", closePopup);
+    return;
+  } else if (
     evt.key === "Escape" ||
     evt.target.classList.contains("button_close") ||
     evt.target.classList.contains("popup_opened") ||

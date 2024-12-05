@@ -1,3 +1,17 @@
+import FormValidator from "./formValidator.js";
+const formListElement = document.querySelectorAll(".popup__form");
+const formValidator = new FormValidator(
+  {
+    formSelector: ".popup__form",
+    fieldsetSelector: ".popup__fieldset",
+    inputSelector: ".input",
+    submitButtonSelector: ".button_popup-submit",
+    inactiveButtonClass: "button_popup-submit_disabled",
+    inputErrorClass: "input__popup_type_error",
+    errorClass: "popup__error_visible",
+  },
+  formListElement
+);
 const profileElement = document.querySelector(".profile");
 const profileBtnElement = profileElement.querySelector(".button_edit");
 const addBtnElement = profileElement.querySelector(".button_add");
@@ -40,13 +54,9 @@ profileBtnElement.addEventListener("click", () => {
   const jobInput = document.forms.profile.job;
   nameInput.value = profileElement.querySelector(".profile__name").textContent;
   jobInput.value = profileElement.querySelector(".profile__job").textContent;
-  const inputList = Array.from(popupProfileForm.querySelectorAll(".input"));
-  toggleButtonState(inputList, popupProfileForm, {
-    submitButtonSelector: ".button_popup-submit",
-    inactiveButtonClass: "button_popup-submit_disabled",
-  });
   popupProfileElement.classList.add("popup_opened");
   popupProfileElement.addEventListener("click", closePopup);
+  formValidator.resetInputValidation(popupProfileForm);
   document.addEventListener("keydown", closePopup);
 });
 
@@ -74,13 +84,7 @@ function closePopup(evt) {
     popupElement.removeEventListener("click", closePopup);
     document.removeEventListener("keydown", closePopup);
     document.forms.add.reset();
-    resetInputValidation(formElement, {
-      inputSelector: ".input",
-      submitButtonSelector: ".button_popup-submit",
-      inactiveButtonClass: "button_popup-submit_disabled",
-      inputErrorClass: "input__popup_type_error",
-      errorClass: "popup__error_visible",
-    });
+    formValidator.resetInputValidation(formElement);
   }
 }
 
@@ -152,3 +156,5 @@ function handleRenderNoCards() {
 }
 
 handleRenderNoCards();
+
+formValidator.enableValidation();

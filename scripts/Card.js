@@ -4,7 +4,7 @@ export default class Card {
   constructor(card, galleryCardElement) {
     this._title = card.title;
     this._link = card.link;
-    this.galleryElement = galleryCardElement;
+    this._galleryElement = galleryCardElement;
   }
 
   _renderCard() {
@@ -31,7 +31,7 @@ export default class Card {
   }
 
   enableRenderCards() {
-    this.galleryElement.prepend(this._renderCard());
-    this.galleryElement.addEventListener("click", this._handleCardButtons);
+    this._galleryElement.prepend(this._renderCard());
+    this._galleryElement.addEventListener("click", this._handleCardButtons);
   }
 }

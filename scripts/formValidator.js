@@ -3,6 +3,7 @@ export default class FormValidator {
     this._classObj = classObj;
     this._formList = Array.from(formList);
   }
+
   resetInputValidation = (formElement) => {
     this.inputList = Array.from(
       formElement.querySelectorAll(this._classObj.inputSelector)

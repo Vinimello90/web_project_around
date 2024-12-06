@@ -1,5 +1,5 @@
-import handleRenderNoCards from "./index.js";
-
+import { handleRenderNoCards } from "./index.js";
+import { openPopupImage } from "./utils.js";
 export default class Card {
   constructor(card, galleryCardElement) {
     this._title = card.title;
@@ -8,23 +8,15 @@ export default class Card {
   }
 
   _renderCard() {
-    console.log(this._link);
     this._cardTemplate = document.querySelector("#card-template").content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._title;
     this._cardElement.querySelector(".card__title").textContent = this._title;
-    this._cardImageElement.addEventListener("click", () => {
-      this._popupImage = document.querySelector(".popup_image");
-      this._imgElement = this._popupImage.querySelector(".popup__img");
-      this._titleElement = this._popupImage.querySelector(".popup__title");
-      this._imgElement.src = this._link;
-      this._titleElement.textContent = this._title;
-      this._popupImage.classList.add("popup_opened");
-      this._popupImage.addEventListener("click", closePopup);
-      document.addEventListener("keydown", closePopup);
-    });
+    this._cardImageElement.addEventListener("click", () =>
+      openPopupImage(this._title, this._link)
+    );
     return this._cardElement;
   }
 

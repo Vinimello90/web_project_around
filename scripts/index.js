@@ -24,6 +24,7 @@ popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
 function addCard(card) {
   const addCard = new Card(card, galleryCardsElement);
   addCard.enableRenderCards();
+  addCard.handleRenderNoCards();
 }
 
 function handleAddCardFormSubmit(evt) {
@@ -38,19 +39,7 @@ popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 initialCards.forEach((card) => addCard(card));
 
-export function handleRenderNoCards() {
-  const cards = galleryCardsElement.querySelectorAll(".card");
-  const noCards = galleryCardsElement.querySelector(".no-cards");
-  if (cards.length === 0) {
-    noCards.classList.remove("no-cards_hidden");
-  } else {
-    noCards.classList.add("no-cards_hidden");
-  }
-}
-
-handleRenderNoCards();
-
-export const formValidator = new FormValidator(
+const formValidator = new FormValidator(
   {
     formSelector: ".popup__form",
     fieldsetSelector: ".popup__fieldset",
@@ -63,4 +52,4 @@ export const formValidator = new FormValidator(
   formListElement
 );
 
-formValidator.enableValidation();
+export { formValidator };

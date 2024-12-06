@@ -3,7 +3,6 @@ import {
   profileBtnElement,
   addBtnElement,
   popupProfileElement,
-  popupProfileForm,
   popupAddCardElement,
 } from "./data.js";
 import { formValidator } from "./index.js";
@@ -15,14 +14,15 @@ profileBtnElement.addEventListener("click", () => {
   jobInput.value = profileElement.querySelector(".profile__job").textContent;
   popupProfileElement.classList.add("popup_opened");
   popupProfileElement.addEventListener("click", closePopup);
-  formValidator.resetInputValidation(popupProfileForm);
   document.addEventListener("keydown", closePopup);
+  formValidator.enableValidation();
 });
 
 addBtnElement.addEventListener("click", () => {
   popupAddCardElement.classList.add("popup_opened");
   popupAddCardElement.addEventListener("click", closePopup);
   document.addEventListener("keydown", closePopup);
+  formValidator.enableValidation();
 });
 
 function openPopupImage(title, link) {
@@ -55,6 +55,7 @@ function closePopup(evt) {
     popupElement.removeEventListener("click", closePopup);
     document.removeEventListener("keydown", closePopup);
     document.forms.add.reset();
+    document.forms.profile.reset();
     formValidator.resetInputValidation(formElement);
   }
 }

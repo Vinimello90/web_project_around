@@ -1,4 +1,4 @@
-import { handleRenderNoCards } from "./index.js";
+import { galleryCardsElement } from "./data.js";
 import { openPopupImage } from "./utils.js";
 export default class Card {
   constructor(card, galleryCardElement) {
@@ -7,7 +7,17 @@ export default class Card {
     this._galleryElement = galleryCardElement;
   }
 
-  _renderCard() {
+  handleRenderNoCards = () => {
+    const cards = galleryCardsElement.querySelectorAll(".card");
+    const noCards = galleryCardsElement.querySelector(".no-cards");
+    if (cards.length === 0) {
+      noCards.classList.remove("no-cards_hidden");
+    } else {
+      noCards.classList.add("no-cards_hidden");
+    }
+  };
+
+  _renderCard = () => {
     this._cardTemplate = document.querySelector("#card-template").content;
     this._cardElement = this._cardTemplate.cloneNode(true);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
@@ -18,20 +28,20 @@ export default class Card {
       openPopupImage(this._title, this._link)
     );
     return this._cardElement;
-  }
+  };
 
-  _handleCardButtons(evt) {
+  _handleCardButtons = (evt) => {
     if (evt.target.classList.contains("button_remove")) {
       evt.target.parentElement.remove();
-      handleRenderNoCards();
+      this.handleRenderNoCards();
     }
     if (evt.target.classList.contains("button_like")) {
       evt.target.classList.toggle("button_like_activate");
     }
-  }
+  };
 
-  enableRenderCards() {
+  enableRenderCards = () => {
     this._galleryElement.prepend(this._renderCard());
     this._galleryElement.addEventListener("click", this._handleCardButtons);
-  }
+  };
 }

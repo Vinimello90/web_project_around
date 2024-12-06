@@ -3,7 +3,9 @@ import {
   profileBtnElement,
   addBtnElement,
   popupProfileElement,
+  popupProfileForm,
   popupAddCardElement,
+  popupAddCardForm,
 } from "./data.js";
 import { formValidator } from "./index.js";
 
@@ -15,14 +17,14 @@ profileBtnElement.addEventListener("click", () => {
   popupProfileElement.classList.add("popup_opened");
   popupProfileElement.addEventListener("click", closePopup);
   document.addEventListener("keydown", closePopup);
-  formValidator.enableValidation();
+  formValidator.resetInputValidation(popupProfileForm);
 });
 
 addBtnElement.addEventListener("click", () => {
   popupAddCardElement.classList.add("popup_opened");
   popupAddCardElement.addEventListener("click", closePopup);
   document.addEventListener("keydown", closePopup);
-  formValidator.enableValidation();
+  formValidator.resetInputValidation(popupAddCardForm);
 });
 
 function openPopupImage(title, link) {

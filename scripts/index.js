@@ -52,4 +52,6 @@ const formValidator = new FormValidator(
   formListElement
 );
 
+formValidator.enableValidation();
+
 export { formValidator };

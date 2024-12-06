@@ -1,5 +1,3 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
 import {
   formListElement,
   profileElement,
@@ -8,6 +6,8 @@ import {
   galleryCardsElement,
   initialCards,
 } from "./data.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 import { closePopup } from "./utils.js";
 
 function handleProfileFormSubmit(evt) {

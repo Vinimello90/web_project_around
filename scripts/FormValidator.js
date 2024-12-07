@@ -5,11 +5,11 @@ export default class FormValidator {
   }
 
   resetInputValidation = (formElement) => {
-    this.inputList = Array.from(
+    const inputList = Array.from(
       formElement.querySelectorAll(this._classObj.inputSelector)
     );
-    this._toggleButtonState(formElement, this.inputList);
-    this.inputList.forEach((inputElement) => {
+    this._toggleButtonState(formElement, inputList);
+    inputList.forEach((inputElement) => {
       const errorElement = formElement.querySelector(
         `.popup__${inputElement.id}`
       );
@@ -63,14 +63,14 @@ export default class FormValidator {
   };
 
   _setEventListeners = (formElement) => {
-    this.inputList = Array.from(
+    const inputList = Array.from(
       formElement.querySelectorAll(this._classObj.inputSelector)
     );
-    this._toggleButtonState(formElement, this.inputList);
-    this.inputList.forEach((inputElement) => {
+    this._toggleButtonState(formElement, inputList);
+    inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(formElement, inputElement);
-        this._toggleButtonState(formElement, this.inputList);
+        this._toggleButtonState(formElement, inputList);
       });
     });
   };
@@ -80,7 +80,6 @@ export default class FormValidator {
       this._fieldsetList = Array.from(
         formElement.querySelectorAll(this._classObj.fieldsetSelector)
       );
-
       this._fieldsetList.forEach((fieldset) => {
         this._setEventListeners(fieldset);
       });

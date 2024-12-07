@@ -22,10 +22,16 @@ function handleProfileFormSubmit(evt) {
 popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 function addCard(card) {
+  const noCards = galleryCardsElement.querySelector(".no-cards");
   const addCard = new Card(card, galleryCardsElement);
-  addCard.enableRenderCards();
-  addCard.handleRenderNoCards();
+  galleryCardsElement.prepend(addCard.renderCard());
+  galleryCardsElement.querySelector(".no-cards");
+  !noCards.classList.contains("no-cards_hidden")
+    ? addCard.handleRenderNoCards()
+    : null;
 }
+
+initialCards.forEach((card) => addCard(card));
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
@@ -36,8 +42,6 @@ function handleAddCardFormSubmit(evt) {
 }
 
 popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-initialCards.forEach((card) => addCard(card));
 
 const formValidator = new FormValidator(
   {

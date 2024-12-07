@@ -24,7 +24,6 @@ addBtnElement.addEventListener("click", () => {
   popupAddCardElement.classList.add("popup_opened");
   popupAddCardElement.addEventListener("click", closePopup);
   document.addEventListener("keydown", closePopup);
-  formValidator.resetInputValidation(popupAddCardForm);
 });
 
 function openPopupImage(title, link) {

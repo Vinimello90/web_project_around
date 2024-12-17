@@ -1,4 +1,4 @@
-import { openPopupImage } from "./utils.js";
+import { openPopupImage } from "../utils/utils.js";
 export default class Card {
   constructor(card, galleryCardElement) {
     this._title = card.title;

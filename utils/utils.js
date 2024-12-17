@@ -5,9 +5,8 @@ import {
   popupProfileElement,
   popupProfileForm,
   popupAddCardElement,
-  popupAddCardForm,
-} from "./data.js";
-import { formValidator } from "./index.js";
+} from "../utils/constants.js";
+import { formValidator } from "../pages/index.js";
 
 profileBtnElement.addEventListener("click", () => {
   const nameInput = document.forms.profile.name;

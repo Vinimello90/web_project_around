@@ -5,10 +5,10 @@ import {
   popupAddCardForm,
   galleryCardsElement,
   initialCards,
-} from "./data.js";
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import { closePopup } from "./utils.js";
+} from "../utils/constants.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { closePopup } from "../utils/utils.js";
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();

@@ -1,4 +1,3 @@
-import { openPopupImage } from "../utils/utils.js";
 export default class Card {
   constructor({ title, link, handleCardEvents }, galleryCardElement) {
     this._title = title;
@@ -26,9 +25,6 @@ export default class Card {
       this._containerElement.addEventListener("click", this._handleCardEvents);
       this._containerElement._listenerAttached = true;
     }
-    this._cardImageElement.addEventListener("click", () =>
-      openPopupImage(this._title, this._link)
-    );
   };
 
   renderCard = () => {

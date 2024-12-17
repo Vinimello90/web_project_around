@@ -2,14 +2,43 @@ import {
   formListElement,
   profileElement,
   popupProfileForm,
+  profileBtnElement,
+  addBtnElement,
   popupAddCardForm,
   galleryCardsElement,
   initialCards,
 } from "../utils/constants.js";
-import Card from "../components/Card.js";
+import Popup from "../components/Popup.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import { closePopup } from "../utils/utils.js";
+import Card from "../components/Card.js";
+
+profileBtnElement.addEventListener("click", () => {
+  const popupProfile = new Popup(".popup_form-profile");
+  popupProfile.setEventListeners();
+  popupProfile.open();
+});
+
+addBtnElement.addEventListener("click", () => {
+  const popupProfile = new Popup(".popup_form-add-card");
+  popupProfile.setEventListeners();
+  popupProfile.open();
+});
+
+const formValidator = new FormValidator(
+  {
+    formSelector: ".popup__form",
+    fieldsetSelector: ".popup__fieldset",
+    inputSelector: ".input",
+    submitButtonSelector: ".button_popup-submit",
+    inactiveButtonClass: "button_popup-submit_disabled",
+    inputErrorClass: "input__popup_type_error",
+    errorClass: "popup__error_visible",
+  },
+  formListElement
+);
+
+formValidator.enableValidation();
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -92,20 +121,5 @@ function handleAddCardFormSubmit(evt) {
 }
 
 popupAddCardForm.addEventListener("submit", handleAddCardFormSubmit);
-
-const formValidator = new FormValidator(
-  {
-    formSelector: ".popup__form",
-    fieldsetSelector: ".popup__fieldset",
-    inputSelector: ".input",
-    submitButtonSelector: ".button_popup-submit",
-    inactiveButtonClass: "button_popup-submit_disabled",
-    inputErrorClass: "input__popup_type_error",
-    errorClass: "popup__error_visible",
-  },
-  formListElement
-);
-
-formValidator.enableValidation();
 
 export { formValidator };

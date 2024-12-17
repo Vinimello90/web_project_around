@@ -1,15 +1,15 @@
 import { openPopupImage } from "../utils/utils.js";
 export default class Card {
-  constructor({ title, link }, galleryCardElement) {
+  constructor({ title, link, handleCardEvents }, galleryCardElement) {
     this._title = title;
     this._link = link;
-    6;
-    this._galleryElement = galleryCardElement;
+    this._containerElement = galleryCardElement;
+    this.handleCardEvents = handleCardEvents;
   }
 
   handleRenderNoCards = () => {
-    const cards = this._galleryElement.querySelectorAll(".card");
-    const noCards = this._galleryElement.querySelector(".no-cards");
+    const cards = this._containerElement.querySelectorAll(".card");
+    const noCards = this._containerElement.querySelector(".no-cards");
     if (cards.length === 0) {
       noCards.classList.remove("no-cards_hidden");
     } else {
@@ -17,20 +17,14 @@ export default class Card {
     }
   };
 
-  _handleCardButtons = (evt) => {
-    if (evt.target.classList.contains("button_remove")) {
-      evt.target.parentElement.remove();
-      this.handleRenderNoCards();
-    }
-    if (evt.target.classList.contains("button_like")) {
-      evt.target.classList.toggle("button_like_activate");
-    }
+  _handleCardEvents = (evt) => {
+    this.handleCardEvents(evt);
   };
 
   _setEventListeners = () => {
-    if (!this._galleryElement._listenerAttached) {
-      this._galleryElement.addEventListener("click", this._handleCardButtons);
-      this._galleryElement._listenerAttached = true;
+    if (!this._containerElement._listenerAttached) {
+      this._containerElement.addEventListener("click", this._handleCardEvents);
+      this._containerElement._listenerAttached = true;
     }
     this._cardImageElement.addEventListener("click", () =>
       openPopupImage(this._title, this._link)

@@ -27,7 +27,22 @@ const addInitialCards = new Section(
     items: initialCards,
     renderer: (item) => {
       const noCards = galleryCardsElement.querySelector(".no-cards");
-      const createCard = new Card(item, galleryCardsElement);
+      const createCard = new Card(
+        {
+          title: item.title,
+          link: item.link,
+          handleCardEvents: (evt) => {
+            if (evt.target.classList.contains("button_remove")) {
+              evt.target.parentElement.remove();
+              createCard.handleRenderNoCards();
+            }
+            if (evt.target.classList.contains("button_like")) {
+              evt.target.classList.toggle("button_like_activate");
+            }
+          },
+        },
+        galleryCardsElement
+      );
       addInitialCards.addItem(createCard.renderCard());
       !noCards.classList.contains("no-cards_hidden")
         ? createCard.handleRenderNoCards()
@@ -45,7 +60,21 @@ function handleAddCardFormSubmit(evt) {
   const link = document.forms.add.link.value;
   const addCard = new Section(
     {
-      items: [{ title, link }],
+      items: [
+        {
+          title,
+          link,
+          handleCardEvents: (evt) => {
+            if (evt.target.classList.contains("button_remove")) {
+              evt.target.parentElement.remove();
+              createCard.handleRenderNoCards();
+            }
+            if (evt.target.classList.contains("button_like")) {
+              evt.target.classList.toggle("button_like_activate");
+            }
+          },
+        },
+      ],
       renderer: (item) => {
         const noCards = galleryCardsElement.querySelector(".no-cards");
         const createCard = new Card(item, galleryCardsElement);

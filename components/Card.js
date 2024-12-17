@@ -1,8 +1,9 @@
 import { openPopupImage } from "../utils/utils.js";
 export default class Card {
-  constructor(card, galleryCardElement) {
-    this._title = card.title;
-    this._link = card.link;
+  constructor({ title, link }, galleryCardElement) {
+    this._title = title;
+    this._link = link;
+    6;
     this._galleryElement = galleryCardElement;
   }
 

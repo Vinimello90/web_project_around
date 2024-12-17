@@ -8,6 +8,7 @@ import {
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 import { closePopup } from "../utils/utils.js";
 
 function handleProfileFormSubmit(evt) {
@@ -21,23 +22,43 @@ function handleProfileFormSubmit(evt) {
 
 popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
-function addCard(card) {
-  const noCards = galleryCardsElement.querySelector(".no-cards");
-  const addCard = new Card(card, galleryCardsElement);
-  galleryCardsElement.prepend(addCard.renderCard());
-  galleryCardsElement.querySelector(".no-cards");
-  !noCards.classList.contains("no-cards_hidden")
-    ? addCard.handleRenderNoCards()
-    : null;
-}
+const addInitialCards = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const noCards = galleryCardsElement.querySelector(".no-cards");
+      const createCard = new Card(item, galleryCardsElement);
+      addInitialCards.addItem(createCard.renderCard());
+      !noCards.classList.contains("no-cards_hidden")
+        ? createCard.handleRenderNoCards()
+        : null;
+    },
+  },
+  ".gallery__cards"
+);
 
-initialCards.forEach((card) => addCard(card));
+addInitialCards.renderer();
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   const title = document.forms.add.title.value;
   const link = document.forms.add.link.value;
-  addCard({ title, link });
+  const addCard = new Section(
+    {
+      items: [{ title, link }],
+      renderer: (item) => {
+        const noCards = galleryCardsElement.querySelector(".no-cards");
+        const createCard = new Card(item, galleryCardsElement);
+        createCard.handleRenderNoCards();
+        addCard.addItem(createCard.renderCard());
+        !noCards.classList.contains("no-cards_hidden")
+          ? createCard.handleRenderNoCards()
+          : null;
+      },
+    },
+    ".gallery__cards"
+  );
+  addCard.renderer();
   closePopup(evt);
 }
 

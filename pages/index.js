@@ -12,6 +12,7 @@ import Popup from "../components/Popup.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 profileBtnElement.addEventListener("click", () => {
   const popupProfile = new Popup(".popup_form-profile");
@@ -60,13 +61,24 @@ const addInitialCards = new Section(
         {
           title: item.title,
           link: item.link,
-          handleCardEvents: (evt) => {
+          handleCardClick: (evt, title, link) => {
             if (evt.target.classList.contains("button_remove")) {
               evt.target.parentElement.remove();
               createCard.handleRenderNoCards();
             }
             if (evt.target.classList.contains("button_like")) {
               evt.target.classList.toggle("button_like_activate");
+            }
+            if (evt.target.classList.contains("card__image")) {
+              const popupWithImage = new PopupWithImage(
+                {
+                  title: title,
+                  link: link,
+                },
+                ".popup_image"
+              );
+              popupWithImage.open();
+              popupWithImage.setEventListeners();
             }
           },
         },
@@ -93,7 +105,7 @@ function handleAddCardFormSubmit(evt) {
         {
           title,
           link,
-          handleCardEvents: (evt) => {
+          handleCardClick: (evt) => {
             if (evt.target.classList.contains("button_remove")) {
               evt.target.parentElement.remove();
               createCard.handleRenderNoCards();

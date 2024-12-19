@@ -7,10 +7,10 @@ export default class Popup {
     this._popupElement.classList.add("popup_opened");
   }
 
-  close(evt) {
-    this._popupElement.classList.remove("popup_opened");
+  close() {
     document.removeEventListener("keydown", this._keyHandler);
     this._popupElement.removeEventListener("click", this._clickHandler);
+    this._popupElement.classList.remove("popup_opened");
   }
 
   _handleEscClose(evt) {
@@ -34,7 +34,6 @@ export default class Popup {
     };
     this._popupElement.addEventListener("click", this._clickHandler);
     this._keyHandler = (evt) => {
-      console.log("testes");
       this._handleEscClose(evt);
     };
     document.addEventListener("keydown", this._keyHandler);

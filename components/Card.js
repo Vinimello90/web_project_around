@@ -1,9 +1,9 @@
 export default class Card {
-  constructor({ title, link, handleCardEvents }, galleryCardElement) {
+  constructor({ title, link, handleCardClick }, galleryCardElement) {
     this._title = title;
     this._link = link;
     this._containerElement = galleryCardElement;
-    this.handleCardEvents = handleCardEvents;
+    this.handleCardClick = handleCardClick;
   }
 
   handleRenderNoCards = () => {
@@ -16,15 +16,16 @@ export default class Card {
     }
   };
 
-  _handleCardEvents = (evt) => {
-    this.handleCardEvents(evt);
+  _handleCardClick = (evt) => {
+    this.handleCardClick(evt, this._title, this._link);
   };
 
   _setEventListeners = () => {
-    if (!this._containerElement._listenerAttached) {
-      this._containerElement.addEventListener("click", this._handleCardEvents);
-      this._containerElement._listenerAttached = true;
-    }
+    this._cardElement
+      .querySelector(".card")
+      .addEventListener("click", (evt) => {
+        this._handleCardClick(evt);
+      });
   };
 
   renderCard = () => {
@@ -34,7 +35,7 @@ export default class Card {
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._title;
     this._cardElement.querySelector(".card__title").textContent = this._title;
-    this._setEventListeners(this._cardImageElement);
+    this._setEventListeners();
     return this._cardElement;
   };
 }

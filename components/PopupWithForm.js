@@ -1,14 +1,16 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  //Possuir a função de retorno de chamada do envio do formulário como parâmetro do construtor, assim como o seletor do pop-up.
+  // O constructor possui a função de retorno de chamada do envio do formulário como
+  // parâmetro do construtor, assim como o seletor do pop-up.
   constructor({ handlerForm }, popupSelector) {
     super(popupSelector);
     this._popupElement = document.querySelector(popupSelector);
     this._handlerForm = handlerForm;
   }
 
-  //Armazenar um método privado chamado _getInputValues() que coleta dados de todos os campos de entrada.
+  // Método privado chamado _getInputValues() que coleta dados
+  // de todos os campos de entrada.
   _getInputValues(evt) {
     evt.preventDefault();
     this._inputValue1 = this._popupElement.querySelectorAll(".input")[0];
@@ -19,8 +21,9 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  //Modificar o método pai setEventListeners(). O método setEventListeners() da classe PopupWithForm precisa
-  //adicionar o manipulador de eventos Submit ao formulário e o ouvinte de eventos click para o ícone de fechamento.
+  // No método pai foi modificado o setEventListeners().
+  // O método setEventListeners() adiciona o manipulador de eventos
+  // Submit ao formulário.
   setEventListeners(evt) {
     super.setEventListeners(evt);
     this._handlerInput = (evt) => {
@@ -31,7 +34,9 @@ export default class PopupWithForm extends Popup {
       .addEventListener("submit", this._handlerInput);
   }
 
-  //Modificar o método pai close() para redefinir o formulário assim que o pop-up for fechado.
+  // No método pai foi modificado o close() para redefinir o formulário
+  // assim que o pop-up for fechado e removido o ouvinte de submit para não
+  // duplica-lo ao reabrir o popup.
   close() {
     super.close();
     this._popupElement
@@ -39,5 +44,4 @@ export default class PopupWithForm extends Popup {
       .removeEventListener("submit", this._handlerInput);
     this._popupElement.querySelector(".popup__form").reset();
   }
-  //Criar uma instância da classe PopupWithForm para cada pop-up.
 }

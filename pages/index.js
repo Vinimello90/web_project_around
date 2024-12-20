@@ -15,8 +15,8 @@ import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 
-// Ouvinte do botão para abrir o popup do formulário para editar
-// o perfil.
+// Ouvinte de eventos botão com uma instancia da classe PopupwithForm
+// para abrir o popup do formulário para editar o perfil.
 profileBtnElement.addEventListener("click", () => {
   const popupProfile = new PopupWithForm(
     { handlerForm: ({ name, job }) => {} },
@@ -26,8 +26,8 @@ profileBtnElement.addEventListener("click", () => {
   popupProfile.open();
 });
 
-// Ouvinte do botão para abrir o popup do formulário para adicionar um
-// novo card.
+// Ouvinte de eventos botão com uma instancia da classe PopupwithForm
+// para abrir o popup do formulário para adicionar um novo card.
 addBtnElement.addEventListener("click", () => {
   const popupAddCard = new PopupWithForm(
     {

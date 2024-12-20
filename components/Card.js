@@ -3,7 +3,7 @@ export default class Card {
     this._title = title;
     this._link = link;
     this._containerElement = galleryCardElement;
-    this.handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   handleRenderNoCards = () => {
@@ -16,16 +16,14 @@ export default class Card {
     }
   };
 
-  _handleCardClick = (evt) => {
-    this.handleCardClick(evt, this._title, this._link);
+  handleCardClick = (evt) => {
+    this._handleCardClick(evt, this._title, this._link);
   };
 
   _setEventListeners = () => {
     this._cardElement
       .querySelector(".card")
-      .addEventListener("click", (evt) => {
-        this._handleCardClick(evt);
-      });
+      .addEventListener("click", this.handleCardClick);
   };
 
   renderCard = () => {

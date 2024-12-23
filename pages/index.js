@@ -62,7 +62,7 @@ addBtnElement.addEventListener("click", () => {
     {
       // handleForm é um callback passado como argumento, que recebe os valores como
       // paramentro e instancia a classe Section que fica responsável por
-      // renderizar no site o card.
+      // renderizar na página o card.
       handleForm: ({ title, link }) => {
         const addCard = new Section(
           {
@@ -114,7 +114,7 @@ addBtnElement.addEventListener("click", () => {
                 galleryCardsElement
               );
               // método da classe Section que é pasasdo como callback para criar o
-              // elemento e receber como retorno o elemento para adicionar ao site.
+              // elemento e receber como retorno o elemento para renderizar o card na página.
               addCard.addItem(createCard.renderCard());
               // confere se no elemento na variavel noCards está ausente a classe que esconde ele,
               // caso verdadeiro chama a o método da classe Card que confere se há cards ou não para
@@ -137,17 +137,8 @@ addBtnElement.addEventListener("click", () => {
   popupAddCard.open();
 });
 
-formValidator.enableValidation();
-
-// function handleProfileFormSubmit(evt) {
-//   evt.preventDefault();
-//   const nameValue = document.forms.profile.name.value;
-//   const jobValue = document.forms.profile.job.value;
-//   profileElement.querySelector(".profile__name").textContent = nameValue;
-//   profileElement.querySelector(".profile__job").textContent = jobValue;
-//   closePopup(evt);
-// }
-
+// addInitialCards instancia a classe Section para renderizar no site os cards iniciais
+// armzenados em uma constante.
 const addInitialCards = new Section(
   {
     items: initialCards,
@@ -189,5 +180,7 @@ const addInitialCards = new Section(
 );
 
 addInitialCards.renderer();
+
+formValidator.enableValidation();
 
 export { formValidator };

@@ -6,7 +6,7 @@ export default class UserInfo {
     this._NameElement = document.querySelector(nameSelector);
     this._JobElement = document.querySelector(jobSelector);
   }
-  // Um método público chamado getUserInfo() que retorna um objeto com informação sobre o usuário.
+  // Método público getUserInfo() que retorna um objeto com informação sobre o usuário.
   // Esse método será útil para casos em que é necessário exibir os dados do usuário no formulário aberto.
   getUserInfo() {
     return {
@@ -15,9 +15,8 @@ export default class UserInfo {
     };
   }
 
-  // Um método público chamado setUserInfo() que pega novos dados do usuário e adiciona na página.
+  // Método público setUserInfo() que pega novos dados do usuário e adiciona à página.
   setUserInfo({ name, job }) {
-    console.log("tste");
     this._NameElement.textContent = name;
     this._JobElement.textContent = job;
   }

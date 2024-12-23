@@ -1,3 +1,5 @@
+// A classe FormValidator é responsável por válidar o
+// formulário.
 export default class FormValidator {
   constructor(classObj, formList) {
     this._classObj = classObj;

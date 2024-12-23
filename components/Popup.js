@@ -1,24 +1,31 @@
+// A classe Popup é responsável para adicionar e manipular os ouvintes
+// de eventos de abrir e fechar a popup.
 export default class Popup {
+  // O constructor recebe como parâmetro a classe seletora do
+  // elemento da popup
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
   }
-
+  // O método público open() adiciona a classe que vai mostrar a popup ná pagina.
   open() {
     this._popupElement.classList.add("popup_opened");
   }
-
+  // O método público close() remove a classe que deixa a popup visivel do elemento da popup
+  // e remove os ouvites de eventos para não duplicar os ouvintes quando reaberto.
   close() {
     document.removeEventListener("keydown", this._keyHandler);
     this._popupElement.removeEventListener("click", this._clickHandler);
     this._popupElement.classList.remove("popup_opened");
   }
-
+  // O método privado _handleEscClose() verifica a tecla pressionada
+  // para fechar a popup.
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close(evt);
     }
   }
-
+  // O método privado _handleEscClose() verifica se o elemento clicado
+  // tem a classe correta para fechar a popup.
   _handleClickClose(evt) {
     if (
       evt.target.classList.contains("button_close") ||
@@ -27,7 +34,8 @@ export default class Popup {
       this.close(evt);
     }
   }
-
+  // O método público setEventListeners() adiciona os ouvintes de eventos que
+  // irão fechar a popup se ativados.
   setEventListeners() {
     this._clickHandler = (evt) => {
       this._handleClickClose(evt);

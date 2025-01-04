@@ -78,7 +78,7 @@ addBtnElement.addEventListener("click", () => {
               },
             ],
             // renderer é um callback passado como argumento, recebe um objeto como
-            // parametro com os valores para o card, e instancia a classe Card para
+            // parâmetro com os valores para o card, e instancia a classe Card para
             // criação dos cards.
             renderer: (item) => {
               const noCards = galleryCardsElement.querySelector(".no-cards");
@@ -87,7 +87,7 @@ addBtnElement.addEventListener("click", () => {
                   title: item.title,
                   link: item.link,
                   // handleCardClick é um callback que manipula os cliques dos ouvintes
-                  //  de eventos do card, passado como argumento e recebe como parametro
+                  //  de eventos do card, passado como argumento e recebe como parâmetro
                   // o evento e os valores do card para adicionar a popup.
                   handleCardClick: (evt, title, link) => {
                     if (evt.target.classList.contains("button_remove")) {

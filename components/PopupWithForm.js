@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 import { formValidator } from "../pages/index.js";
-// classe PopupWithForm, que herda de Popup, é responsável por
-// pela abertura e fechamento da popup e manipular o formulário.
+// classe PopupWithForm, que herda de Popup, é responsável pela abertura
+// e fechamento da popup e manipular o formulário.
 export default class PopupWithForm extends Popup {
   // O constructor possui a função de retorno de chamada do envio do formulário como
   // parâmetro do construtor, assim como o seletor do pop-up do formulário.

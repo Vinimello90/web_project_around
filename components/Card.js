@@ -1,4 +1,4 @@
-// Define a classe Card que é responsável por estruturar e manipular os elemementos do card,
+// A classe Card que é responsável por estruturar e manipular os elemementos do card,
 // antes de retornar o elemento para ser renderizado.
 export default class Card {
   // O constructor recebe 2 parâmetros, o primeiro com 1 objeto com 2 valores
@@ -9,8 +9,8 @@ export default class Card {
     this._containerElement = galleryCardElement;
     this._handleCardClick = handleCardClick;
   }
-  //O método público handleRenderNoCards, verifica se existem ainda cards
-  //na página para exibir a mensagem caso não tenha nenhum card.
+  // O método público handleRenderNoCards, verifica se existem ainda cards
+  // na página para exibir a mensagem caso não tenha nenhum card.
   handleRenderNoCards = () => {
     const cards = this._containerElement.querySelectorAll(".card");
     const noCards = this._containerElement.querySelector(".no-cards");
@@ -20,7 +20,7 @@ export default class Card {
       noCards.classList.add("no-cards_hidden");
     }
   };
-  //O método público handleCardClick, passa como argumento o evento e as informações do card
+  // O método público handleCardClick, passa como argumento o evento e as informações do card
   // para o callback para verificar qual elemento foi clicado e qual função será ativada.
   handleCardClick = (evt) => {
     this._handleCardClick(evt, this._title, this._link);

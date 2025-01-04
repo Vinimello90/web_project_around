@@ -1,8 +1,8 @@
-// A classe Section é responsável por iniciar a
-// construção do card e renderizar à página.
+// A classe Section é responsável por iniciar a construção do card e
+// renderizar à página.
 export default class Section {
   // O constructor recebe 2 parâmetros, uma array de objeto com as informações
-  // do card mais uma função de callback e um seletor de classe do elemento
+  // do card e com uma função de callback e um seletor de classe do elemento
   // do container onde será renderizado o card.
   constructor({ items, renderer }, containerSelector) {
     this._items = items;

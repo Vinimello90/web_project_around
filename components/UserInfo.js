@@ -7,7 +7,7 @@ export default class UserInfo {
     this._JobElement = document.querySelector(jobSelector);
   }
   // Método público getUserInfo() que retorna um objeto com informação sobre o usuário.
-  // Esse método será útil para casos em que é necessário exibir os dados do usuário no formulário aberto.
+  // usado para casos em que é necessário exibir os dados do usuário no formulário aberto.
   getUserInfo() {
     return {
       currentName: this._NameElement.textContent,

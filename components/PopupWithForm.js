@@ -29,7 +29,7 @@ export default class PopupWithForm extends Popup {
   setEventListeners(evt) {
     super.setEventListeners(evt);
     // foi criado a propriedade _handleInput que recebe uma função
-    // que é um callback do ouvinte de eventos para conseguir remover
+    // que é um callback do ouvinte de evento para conseguir remover
     // o ouvinte ao fechar a popup.
     this._handleInput = (evt) => {
       this._getInputValues(evt);
@@ -47,6 +47,9 @@ export default class PopupWithForm extends Popup {
     this._popupElement
       .querySelector(".popup__form")
       .removeEventListener("submit", this._handleInput);
+    //Chama o método público resetInputValidation() da classe FormValidator
+    // para resetar a validação do formulário, é passado como argumento
+    // o elemento do formulário.
     formValidator.resetInputValidation(
       this._popupElement.querySelector(".popup__form")
     );

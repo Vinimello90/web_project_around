@@ -16,6 +16,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
+//instancia a classe FormValidator responsável na
+//validação dos formulários.
 const formValidator = new FormValidator(
   {
     formSelector: ".popup__form",
@@ -40,6 +42,9 @@ profileBtnElement.addEventListener("click", () => {
   const { currentName, currentJob } = userInfo.getUserInfo();
   document.forms.profile.name.value = currentName;
   document.forms.profile.job.value = currentJob;
+  //Chama o método público resetInputValidation() da classe FormValidator
+  // para resetar e verificar novamente o formulário com as informações do perfil
+  // adicionadas, é passado como argumento o elemento do formulário.
   formValidator.resetInputValidation(popupProfileForm);
   const popupProfile = new PopupWithForm(
     {
@@ -179,8 +184,10 @@ const addInitialCards = new Section(
   ".gallery__cards"
 );
 
+//Renderiza os cards iniciais à página.
 addInitialCards.renderer();
 
+//Inicializa a validação do formulário.
 formValidator.enableValidation();
 
 export { formValidator };

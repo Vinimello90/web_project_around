@@ -3,10 +3,17 @@
 export default class Card {
   // O constructor recebe 2 parâmetros, o primeiro com 1 objeto com 2 valores
   // e uma função de callback, e o segundo o seletor do elemento seção da galleria de cards.
-  constructor({ title, link, isLiked, handleCardClick }, galleryCardElement) {
+
+  constructor(
+    { title, link, isLiked, userId, ownerId, cardId, handleCardClick },
+    galleryCardElement
+  ) {
     this._title = title;
     this._link = link;
     this._isLiked = isLiked;
+    this._userId = userId;
+    this._ownerId = ownerId;
+    this._cardId = cardId;
     this._containerElement = galleryCardElement;
     this._handleCardClick = handleCardClick;
   }
@@ -37,17 +44,20 @@ export default class Card {
   renderCard = () => {
     this._cardTemplate = document.querySelector("#card-template").content;
     this._cardElement = this._cardTemplate.cloneNode(true);
+    // Adiciona a id do card.
+    this._cardElement.querySelector(".card").setAttribute("id", this._cardId);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._title;
+    // Caso haja algum erro ao carregar a imagem o evento onerror ser ativado
+    // e chamara a função anonima para carregar um imagem indicando
+    //  que a imagem original não está disponivel.
     this._cardImageElement.onerror = () => {
       this._cardImageElement.src = "../images/imagem-nao-disponivel.png";
     };
     this._cardElement.querySelector(".card__title").textContent = this._title;
     this.cardLikeElement = this._cardElement.querySelector(".button_like");
-    if (this._isLiked) {
-      this.cardLikeElement.classList.add("button_like_activate");
-    }
+
     this._setEventListeners();
     return this._cardElement;
   };

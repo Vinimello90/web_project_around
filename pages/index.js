@@ -31,14 +31,35 @@ const formValidator = new FormValidator(
   formListElement
 );
 
+// Instacia a classe UserInfo para manipular
+// as informações do perfil do usuário.
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__job",
+  avatarSelector: ".profile__picture",
+});
+
+// Requisita as informações do usuário da API.
+fetch("https://around-api.pt-br.tripleten-services.com/v1/users/me", {
+  headers: {
+    authorization: "3104c43f-5c52-4781-879f-672ac8ed2b72",
+  },
+})
+  .then((res) => res.json())
+  .then((user) => {
+    // Renderiza as informações do perfil à página.
+    userInfo.setUserInfo({
+      name: user.name,
+      job: user.about,
+    });
+    // Renderiza o avatar do perfil à página.
+    userInfo.setUserAvatar({ avatar: user.avatar });
+  });
+
 // Ouvinte de eventos de clique com com função anonima de callback,
 // que instancia a classe PopupwithForm para abrir o popup do formulário
 // para editar o perfil.
 profileBtnElement.addEventListener("click", () => {
-  const userInfo = new UserInfo({
-    nameSelector: ".profile__name",
-    jobSelector: ".profile__job",
-  });
   const { currentName, currentJob } = userInfo.getUserInfo();
   document.forms.profile.name.value = currentName;
   document.forms.profile.job.value = currentJob;
@@ -142,52 +163,65 @@ addBtnElement.addEventListener("click", () => {
   popupAddCard.open();
 });
 
-// addInitialCards instancia a classe Section para renderizar no site os cards iniciais
-// armzenados em uma constante.
-const addInitialCards = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const noCards = galleryCardsElement.querySelector(".no-cards");
-      const createCard = new Card(
-        {
-          title: item.title,
-          link: item.link,
-          handleCardClick: (evt, title, link) => {
-            if (evt.target.classList.contains("button_remove")) {
-              evt.target.parentElement.remove();
-              createCard.handleRenderNoCards();
-            }
-            if (evt.target.classList.contains("button_like")) {
-              evt.target.classList.toggle("button_like_activate");
-            }
-            if (evt.target.classList.contains("card__image")) {
-              const popupWithImage = new PopupWithImage(
-                {
-                  title: title,
-                  link: link,
-                },
-                ".popup_image"
-              );
-              popupWithImage.open();
-            }
-          },
-        },
-        galleryCardsElement
-      );
-      addInitialCards.addItem(createCard.renderCard());
-      !noCards.classList.contains("no-cards_hidden")
-        ? createCard.handleRenderNoCards()
-        : null;
-    },
+// Requisita as informações dos cards na API.
+fetch("https://around-api.pt-br.tripleten-services.com/v1/cards/", {
+  headers: {
+    authorization: "3104c43f-5c52-4781-879f-672ac8ed2b72",
   },
-  ".gallery__cards"
-);
+})
+  .then((res) => res.json())
+  .then((cards) => {
+    // addInitialCards instancia a classe Section para renderizar no site os cards iniciais
+    // que foram requisitados da API.
+    const addInitialCards = new Section(
+      {
+        items: cards,
+        renderer: (item) => {
+          console.log(item);
+          const noCards = galleryCardsElement.querySelector(".no-cards");
+          const createCard = new Card(
+            {
+              title: item.name,
+              link: item.link,
+              isLiked: item.isLiked,
+              ownerId: item.owner,
+              cardId: item._id,
+              handleCardClick: (evt, title, link) => {
+                if (evt.target.classList.contains("button_remove")) {
+                  evt.target.parentElement.remove();
+                  createCard.handleRenderNoCards();
+                }
+                if (evt.target.classList.contains("button_like")) {
+                  evt.target.classList.toggle("button_like_activate");
+                }
+                if (evt.target.classList.contains("card__image")) {
+                  const popupWithImage = new PopupWithImage(
+                    {
+                      title: title,
+                      link: link,
+                    },
+                    ".popup_image"
+                  );
+                  popupWithImage.open();
+                }
+              },
+            },
+            galleryCardsElement
+          );
+          addInitialCards.addItem(createCard.renderCard());
+          !noCards.classList.contains("no-cards_hidden")
+            ? createCard.handleRenderNoCards()
+            : null;
+        },
+      },
+      ".gallery__cards"
+    );
 
-//Renderiza os cards iniciais à página.
-addInitialCards.renderer();
+    //Renderiza os cards iniciais à página.
+    addInitialCards.renderer();
 
-//Inicializa a validação do formulário.
-formValidator.enableValidation();
+    //Inicializa a validação do formulário.
+    formValidator.enableValidation();
+  });
 
 export { formValidator };

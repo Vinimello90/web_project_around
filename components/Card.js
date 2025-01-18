@@ -3,9 +3,10 @@
 export default class Card {
   // O constructor recebe 2 parâmetros, o primeiro com 1 objeto com 2 valores
   // e uma função de callback, e o segundo o seletor do elemento seção da galleria de cards.
-  constructor({ title, link, handleCardClick }, galleryCardElement) {
+  constructor({ title, link, isLiked, handleCardClick }, galleryCardElement) {
     this._title = title;
     this._link = link;
+    this._isLiked = isLiked;
     this._containerElement = galleryCardElement;
     this._handleCardClick = handleCardClick;
   }
@@ -39,7 +40,14 @@ export default class Card {
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._title;
+    this._cardImageElement.onerror = () => {
+      this._cardImageElement.src = "../images/imagem-nao-disponivel.png";
+    };
     this._cardElement.querySelector(".card__title").textContent = this._title;
+    this.cardLikeElement = this._cardElement.querySelector(".button_like");
+    if (this._isLiked) {
+      this.cardLikeElement.classList.add("button_like_activate");
+    }
     this._setEventListeners();
     return this._cardElement;
   };

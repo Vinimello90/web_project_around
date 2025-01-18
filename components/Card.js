@@ -57,7 +57,17 @@ export default class Card {
     };
     this._cardElement.querySelector(".card__title").textContent = this._title;
     this.cardLikeElement = this._cardElement.querySelector(".button_like");
-
+    // Verifica se a propriedade oculta é verdadeira para ativar o botão de like
+    // ao carregar o card.
+    if (this._isLiked) {
+      this.cardLikeElement.classList.add("button_like_activate");
+    }
+    // Verifica se o id do proprietário do card é diferente do id do
+    // usuário para remover o botão de deletar o card caso não seja do
+    // usuário
+    if (this._ownerId !== this._userId) {
+      this._cardElement.querySelector(".button_remove").remove();
+    }
     this._setEventListeners();
     return this._cardElement;
   };

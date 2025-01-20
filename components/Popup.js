@@ -21,6 +21,7 @@ export default class Popup {
   loading(status) {
     if (status) {
       this._btnElement.textContent = "Salvando...";
+      this._btnElement.setAttribute("disabled", "disabled");
     } else {
       this._btnElement.textContent = this._btnDefaultText;
     }

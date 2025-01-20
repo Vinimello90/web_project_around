@@ -4,6 +4,7 @@ import {
   profileBtnElement,
   addBtnElement,
   galleryCardsElement,
+  noCards,
 } from "../utils/constants.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -34,6 +35,9 @@ const formValidator = new FormValidator(
   },
   formListElement
 );
+
+//Inicializa a validação do formulário.
+formValidator.enableValidation();
 
 // Instacia a classe UserInfo para manipular
 // as informações do perfil do usuário.
@@ -70,6 +74,83 @@ profileBtnElement.addEventListener("click", () => {
   popupProfile.open();
 });
 
+function generateCards(cards) {
+  const addCard = new Section(
+    {
+      items: cards,
+      // renderer é um callback passado como argumento, recebe um objeto como
+      // parâmetro com os valores para o card, e instancia a classe Card para
+      // criação dos cards.
+      renderer: (card) => {
+        const createCard = new Card(
+          {
+            title: card.name,
+            link: card.link,
+            isLiked: card.isLiked,
+            userId: card.owner,
+            ownerId: card.owner,
+            cardId: card._id,
+            // handleCardClick é um callback que manipula os cliques dos ouvintes
+            //  de eventos do card, passado como argumento e recebe como parâmetro
+            // o evento e os valores do card para adicionar a popup.
+            handleCardClick: (evt, { title, link, id, isLiked }) => {
+              if (evt.target.classList.contains("button_remove")) {
+                // remove o card se clicado no botão de fechar,
+                // e chama o método da classe Card para verificar
+                // se contém card ainda na seção.
+                const popupConfirmation = new PopupWithConfirmation({
+                  handleConfirmation: () => {
+                    deleteCardApi(id)
+                      .then(() => {
+                        evt.target.parentElement.remove();
+                        createCard.handleRenderNoCards();
+                      })
+                      .finally(() => popupConfirmation.close());
+                  },
+                  popupSelector: ".popup_confirmation",
+                  submitButtonSelector: ".button_popup-submit",
+                });
+                popupConfirmation.open();
+              }
+              if (evt.target.classList.contains("button_like")) {
+                editLikeApi({ id, isLiked }).then(({ isLiked: status }) => {
+                  evt.target.classList.toggle("button_like_activate");
+                  createCard.setLikeStatus(status);
+                });
+              }
+              if (evt.target.classList.contains("card__image")) {
+                // Instancia a classe PopupWithImage passando como argumento
+                // os dados do card.
+                const popupWithImage = new PopupWithImage(
+                  {
+                    title: title,
+                    link: link,
+                  },
+                  ".popup_image"
+                );
+                //metódo open da classe PopupWithImage para abrir a popup.
+                popupWithImage.open();
+              }
+            },
+          },
+          galleryCardsElement
+        );
+        // método da classe Section que é pasasdo como callback para criar o
+        // elemento e receber como retorno o elemento para renderizar o card na página.
+        addCard.addItem(createCard.renderCard());
+        // confere se no elemento na variavel noCards está ausente a classe que esconde ele,
+        // caso verdadeiro chama a o método da classe Card que confere se há cards ou não para
+        // para renderizar a mensagem caso não haja cards.
+        !noCards.classList.contains("no-cards_hidden")
+          ? createCard.handleRenderNoCards()
+          : null;
+      },
+    },
+    ".gallery__cards"
+  );
+  addCard.renderer();
+}
+
 // Ouvinte de eventos de clique com com função anonima de callback,
 // que instancia classe PopupwithForm para abrir o popup do formulário
 // para adicionar um novo card.
@@ -79,91 +160,13 @@ addBtnElement.addEventListener("click", () => {
     // paramentro e instancia a classe Section que fica responsável por
     // renderizar na página o card.
     handleForm: ({ title, link }) => {
-      const addCard = new Section(
-        {
-          items: [
-            {
-              title,
-              link,
-            },
-          ],
-          // renderer é um callback passado como argumento, recebe um objeto como
-          // parâmetro com os valores para o card, e instancia a classe Card para
-          // criação dos cards.
-          renderer: (item) => {
-            const noCards = galleryCardsElement.querySelector(".no-cards");
-            popupAddCard.loading(true);
-            addNewCardApi(item)
-              .then((card) => {
-                const createCard = new Card(
-                  {
-                    title: card.name,
-                    link: card.link,
-                    isLiked: card.isLiked,
-                    userId: card.owner,
-                    ownerId: card.owner,
-                    cardId: card._id,
-                    // handleCardClick é um callback que manipula os cliques dos ouvintes
-                    //  de eventos do card, passado como argumento e recebe como parâmetro
-                    // o evento e os valores do card para adicionar a popup.
-                    handleCardClick: (evt, { title, link, id, isLiked }) => {
-                      if (evt.target.classList.contains("button_remove")) {
-                        // remove o card se clicado no botão de fechar,
-                        // e chama o método da classe Card para verificar
-                        // se contém card ainda na seção.
-                        const popupConfirmation = new PopupWithConfirmation({
-                          handleConfirmation: () => {
-                            deleteCardApi(id)
-                              .then(() => {
-                                evt.target.parentElement.remove();
-                                createCard.handleRenderNoCards();
-                              })
-                              .finally(() => popupConfirmation.close());
-                          },
-                          popupSelector: ".popup_confirmation",
-                          submitButtonSelector: ".button_popup-submit",
-                        });
-                        popupConfirmation.open();
-                      }
-                      if (evt.target.classList.contains("button_like")) {
-                        editLikeApi({ id, isLiked }).then(() =>
-                          evt.target.classList.toggle("button_like_activate")
-                        );
-                      }
-                      if (evt.target.classList.contains("card__image")) {
-                        // Instancia a classe PopupWithImage passando como argumento
-                        // os dados do card.
-                        const popupWithImage = new PopupWithImage(
-                          {
-                            title: title,
-                            link: link,
-                          },
-                          ".popup_image"
-                        );
-                        //metódo open da classe PopupWithImage para abrir a popup.
-                        popupWithImage.open();
-                      }
-                    },
-                  },
-                  galleryCardsElement
-                );
-                // método da classe Section que é pasasdo como callback para criar o
-                // elemento e receber como retorno o elemento para renderizar o card na página.
-                addCard.addItem(createCard.renderCard());
-                // confere se no elemento na variavel noCards está ausente a classe que esconde ele,
-                // caso verdadeiro chama a o método da classe Card que confere se há cards ou não para
-                // para renderizar a mensagem caso não haja cards.
-                !noCards.classList.contains("no-cards_hidden")
-                  ? createCard.handleRenderNoCards()
-                  : null;
-                popupAddCard.close();
-              })
-              .finally(() => popupAddCard.loading(false));
-          },
-        },
-        ".gallery__cards"
-      );
-      addCard.renderer();
+      popupAddCard.loading(true);
+      addNewCardApi({ title, link })
+        .then((card) => {
+          generateCards([card]);
+          popupAddCard.close();
+        })
+        .finally(() => popupAddCard.loading(false));
     },
     popupSelector: ".popup_form-add-card",
     buttonSelector: ".button_popup-submit",
@@ -181,67 +184,7 @@ fetchDataApi().then(([user, cards]) => {
   });
   // Renderiza o avatar do perfil à página.
   userInfo.setUserAvatar({ avatar: user.avatar });
-  const addInitialCards = new Section(
-    {
-      items: cards.reverse(),
-      renderer: (item) => {
-        const noCards = galleryCardsElement.querySelector(".no-cards");
-        const createCard = new Card(
-          {
-            title: item.name,
-            link: item.link,
-            isLiked: item.isLiked,
-            userId: user._id,
-            ownerId: item.owner,
-            cardId: item._id,
-            handleCardClick: (evt, { title, link, id, isLiked }) => {
-              if (evt.target.classList.contains("button_remove")) {
-                const popupConfirmation = new PopupWithConfirmation({
-                  handleConfirmation: () => {
-                    deleteCardApi(id)
-                      .then(() => {
-                        evt.target.parentElement.remove();
-                        createCard.handleRenderNoCards();
-                      })
-                      .finally(() => popupConfirmation.close());
-                  },
-                  popupSelector: ".popup_confirmation",
-                  submitButtonSelector: ".button_popup-submit",
-                });
-                popupConfirmation.open();
-              }
-              if (evt.target.classList.contains("button_like")) {
-                editLikeApi({ id, isLiked }).then(({ isLiked: status }) => {
-                  console.log(status);
-                  evt.target.classList.toggle("button_like_activate");
-                  createCard.setLikeStatus(status);
-                });
-              }
-              if (evt.target.classList.contains("card__image")) {
-                const popupWithImage = new PopupWithImage({
-                  title: title,
-                  link: link,
-                  popupSelector: ".popup_image",
-                });
-                popupWithImage.open();
-              }
-            },
-          },
-          galleryCardsElement
-        );
-        addInitialCards.addItem(createCard.renderCard());
-        !noCards.classList.contains("no-cards_hidden")
-          ? createCard.handleRenderNoCards()
-          : null;
-      },
-    },
-    ".gallery__cards"
-  );
-  //Renderiza os cards iniciais à página.
-  addInitialCards.renderer();
+  generateCards(cards);
 });
-
-//Inicializa a validação do formulário.
-formValidator.enableValidation();
 
 export { formValidator };

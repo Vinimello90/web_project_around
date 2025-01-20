@@ -55,6 +55,10 @@
   opacity: 100%;
 }
 
+.button_popup_confirmation {
+  margin-top: 0;
+}
+
 .button_add {
   background: url("../images/add_icon.svg") center no-repeat;
   background-size: 22px;
@@ -117,6 +121,10 @@
     height: 46px;
     font-size: 14px;
     margin-top: 46px;
+  }
+
+  .button_popup_confirmation {
+    margin-top: 0;
   }
 
   .button_add {

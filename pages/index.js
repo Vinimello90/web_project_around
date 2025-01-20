@@ -18,6 +18,7 @@ import {
   editUserInfoApi,
   deleteCardApi,
 } from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 //instancia a classe FormValidator responsável na
 //validação dos formulários.
@@ -66,7 +67,6 @@ profileBtnElement.addEventListener("click", () => {
     popupSelector: ".popup_form-profile",
     buttonSelector: ".button_popup-submit",
   });
-  popupProfile.setEventListeners();
   popupProfile.open();
 });
 
@@ -111,10 +111,19 @@ addBtnElement.addEventListener("click", () => {
                         // remove o card se clicado no botão de fechar,
                         // e chama o método da classe Card para verificar
                         // se contém card ainda na seção.
-                        deleteCardApi(id).then(() => {
-                          evt.target.parentElement.remove();
-                          createCard.handleRenderNoCards();
+                        const popupConfirmation = new PopupWithConfirmation({
+                          handleConfirmation: () => {
+                            deleteCardApi(id)
+                              .then(() => {
+                                evt.target.parentElement.remove();
+                                createCard.handleRenderNoCards();
+                              })
+                              .finally(() => popupConfirmation.close());
+                          },
+                          popupSelector: ".popup_confirmation",
+                          submitButtonSelector: ".button_popup-submit",
                         });
+                        popupConfirmation.open();
                       }
                       if (evt.target.classList.contains("button_like")) {
                         editLikeApi({ id, isLiked }).then(() =>
@@ -159,8 +168,6 @@ addBtnElement.addEventListener("click", () => {
     popupSelector: ".popup_form-add-card",
     buttonSelector: ".button_popup-submit",
   });
-
-  popupAddCard.setEventListeners();
   popupAddCard.open();
 });
 
@@ -189,10 +196,19 @@ fetchDataApi().then(([user, cards]) => {
             cardId: item._id,
             handleCardClick: (evt, { title, link, id, isLiked }) => {
               if (evt.target.classList.contains("button_remove")) {
-                deleteCardApi(id).then(() => {
-                  evt.target.parentElement.remove();
-                  createCard.handleRenderNoCards();
+                const popupConfirmation = new PopupWithConfirmation({
+                  handleConfirmation: () => {
+                    deleteCardApi(id)
+                      .then(() => {
+                        evt.target.parentElement.remove();
+                        createCard.handleRenderNoCards();
+                      })
+                      .finally(() => popupConfirmation.close());
+                  },
+                  popupSelector: ".popup_confirmation",
+                  submitButtonSelector: ".button_popup-submit",
                 });
+                popupConfirmation.open();
               }
               if (evt.target.classList.contains("button_like")) {
                 editLikeApi({ id, isLiked }).then(({ isLiked: status }) => {
@@ -202,13 +218,11 @@ fetchDataApi().then(([user, cards]) => {
                 });
               }
               if (evt.target.classList.contains("card__image")) {
-                const popupWithImage = new PopupWithImage(
-                  {
-                    title: title,
-                    link: link,
-                  },
-                  ".popup_image"
-                );
+                const popupWithImage = new PopupWithImage({
+                  title: title,
+                  link: link,
+                  popupSelector: ".popup_image",
+                });
                 popupWithImage.open();
               }
             },

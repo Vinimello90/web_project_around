@@ -14,7 +14,7 @@ export default class PopupWithImage extends Popup {
   // e renderiza as informações do card ao elemento da popup na página.
   open() {
     super.open();
-    super.setEventListeners();
+    super._setEventListeners();
     this._popupElement.querySelector(".popup__img").src = this._link;
     this._popupElement.querySelector(".popup__img").alt = this._title;
     this._popupElement.querySelector(".popup__title").textContent = this._title;

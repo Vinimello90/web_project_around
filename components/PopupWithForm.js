@@ -12,32 +12,9 @@ export default class PopupWithForm extends Popup {
     this._handleForm = handleForm;
   }
 
-  // Método privado chamado _getInputValues() que coleta dados
-  // de todos os campos de entrada e passa como argumento para _handleForm().
-  _getInputValues(evt) {
-    evt.preventDefault();
-    this._inputValue1 = this._popupElement.querySelectorAll(".input")[0];
-    this._inputValue2 = this._popupElement.querySelectorAll(".input")[1];
-    this._handleForm({
-      [this._inputValue1.name]: this._inputValue1.value,
-      [this._inputValue2.name]: this._inputValue2.value,
-    });
-  }
-
-  // No método pai foi modificado o setEventListeners().
-  // O método setEventListeners() adiciona o manipulador de eventos
-  // Submit ao formulário.
-  setEventListeners(evt) {
-    super.setEventListeners(evt);
-    // foi criado a propriedade _handleInput que recebe uma função
-    // que é um callback do ouvinte de evento para conseguir remover
-    // o ouvinte ao fechar a popup.
-    this._handleInput = (evt) => {
-      this._getInputValues(evt);
-    };
-    this._popupElement
-      .querySelector(".popup__form")
-      .addEventListener("submit", this._handleInput);
+  open() {
+    super.open();
+    this._setEventListeners();
   }
 
   // No método pai foi modificado o close() para redefinir o formulário
@@ -56,5 +33,33 @@ export default class PopupWithForm extends Popup {
     formValidator.resetInputValidation(
       this._popupElement.querySelector(".popup__form")
     );
+  }
+
+  // Método privado chamado _getInputValues() que coleta dados
+  // de todos os campos de entrada e passa como argumento para _handleForm().
+  _getInputValues(evt) {
+    evt.preventDefault();
+    this._inputValue1 = this._popupElement.querySelectorAll(".input")[0];
+    this._inputValue2 = this._popupElement.querySelectorAll(".input")[1];
+    this._handleForm({
+      [this._inputValue1.name]: this._inputValue1.value,
+      [this._inputValue2.name]: this._inputValue2.value,
+    });
+  }
+
+  // No método pai foi modificado o setEventListeners().
+  // O método setEventListeners() adiciona o manipulador de eventos
+  // Submit ao formulário.
+  _setEventListeners() {
+    super._setEventListeners();
+    // foi criado a propriedade _handleInput que recebe uma função
+    // que é um callback do ouvinte de evento para conseguir remover
+    // o ouvinte ao fechar a popup.
+    this._handleInput = (evt) => {
+      this._getInputValues(evt);
+    };
+    this._popupElement
+      .querySelector(".popup__form")
+      .addEventListener("submit", this._handleInput);
   }
 }

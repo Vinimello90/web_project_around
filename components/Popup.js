@@ -45,7 +45,7 @@ export default class Popup {
   }
   // O método público setEventListeners() adiciona os ouvintes de eventos que
   // irão fechar a popup se ativados.
-  setEventListeners() {
+  _setEventListeners() {
     this._clickHandler = (evt) => {
       this._handleClickClose(evt);
     };

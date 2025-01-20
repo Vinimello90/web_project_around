@@ -35,6 +35,7 @@ export default class Card {
       title: this._title,
       link: this._link,
       id: this._cardId,
+      isLiked: this._isLiked,
     });
   };
   // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.

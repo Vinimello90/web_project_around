@@ -14,6 +14,7 @@ import UserInfo from "../components/UserInfo.js";
 import {
   fetchDataApi,
   addNewCardApi,
+  editLikeApi,
   editUserInfoApi,
   deleteCardApi,
 } from "../components/Api.js";
@@ -102,7 +103,7 @@ addBtnElement.addEventListener("click", () => {
                     // handleCardClick é um callback que manipula os cliques dos ouvintes
                     //  de eventos do card, passado como argumento e recebe como parâmetro
                     // o evento e os valores do card para adicionar a popup.
-                    handleCardClick: (evt, { title, link, id }) => {
+                    handleCardClick: (evt, { title, link, id, isLiked }) => {
                       if (evt.target.classList.contains("button_remove")) {
                         // remove o card se clicado no botão de fechar,
                         // e chama o método da classe Card para verificar
@@ -113,8 +114,9 @@ addBtnElement.addEventListener("click", () => {
                         });
                       }
                       if (evt.target.classList.contains("button_like")) {
-                        // adiciona a classe para ativar o like caso clicado.
-                        evt.target.classList.toggle("button_like_activate");
+                        editLikeApi({ id, isLiked }).then(() =>
+                          evt.target.classList.toggle("button_like_activate")
+                        );
                       }
                       if (evt.target.classList.contains("card__image")) {
                         // Instancia a classe PopupWithImage passando como argumento
@@ -181,7 +183,7 @@ fetchDataApi().then(([user, cards]) => {
             userId: user._id,
             ownerId: item.owner,
             cardId: item._id,
-            handleCardClick: (evt, { title, link, id }) => {
+            handleCardClick: (evt, { title, link, id, isLiked }) => {
               if (evt.target.classList.contains("button_remove")) {
                 deleteCardApi(id).then(() => {
                   evt.target.parentElement.remove();
@@ -189,7 +191,9 @@ fetchDataApi().then(([user, cards]) => {
                 });
               }
               if (evt.target.classList.contains("button_like")) {
-                evt.target.classList.toggle("button_like_activate");
+                editLikeApi({ id, isLiked }).then(() =>
+                  evt.target.classList.toggle("button_like_activate")
+                );
               }
               if (evt.target.classList.contains("card__image")) {
                 const popupWithImage = new PopupWithImage(

@@ -32,6 +32,20 @@ class Api {
       .catch((err) => console.log(err));
   }
 
+  editLikeStatus({ method, id }) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: method,
+      headers: {
+        authorization: this.headers.authorization,
+      },
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .then((userInfo) => userInfo)
+      .catch((err) => console.log(err));
+  }
+
   deleteCard(id) {
     return fetch(`${this.baseUrl}/cards/${id}`, {
       method: "DELETE",
@@ -93,6 +107,13 @@ export function addNewCardApi({ title, link }) {
       name: title,
       link: link,
     }),
+  });
+}
+
+export function editLikeApi({ id, isLiked }) {
+  return api.editLikeStatus({
+    method: !isLiked ? "PUT" : "DELETE",
+    id,
   });
 }
 

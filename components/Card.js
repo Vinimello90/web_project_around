@@ -43,8 +43,8 @@ export default class Card {
   // para mudar o status da propriedade privada _isLiked para verdadeiro
   // ou falso para conseguir alterar mais de uma vez o status sem precisar
   // recarregar a página.
-  setLikeStatus(isLiked) {
-    this._isLiked = !isLiked;
+  setLikeStatus(status) {
+    this._isLiked = status;
   }
 
   // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.

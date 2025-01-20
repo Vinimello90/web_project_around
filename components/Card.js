@@ -37,6 +37,9 @@ export default class Card {
       id: this._cardId,
       isLiked: this._isLiked,
     });
+    if (evt.target.classList.contains("button_like")) {
+      this._isLiked = !this._isLiked;
+    }
   };
   // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.
   _setEventListeners = () => {

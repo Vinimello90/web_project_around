@@ -184,7 +184,7 @@ fetchDataApi().then(([user, cards]) => {
   });
   // Renderiza o avatar do perfil à página.
   userInfo.setUserAvatar({ avatar: user.avatar });
-  generateCards(cards);
+  generateCards(cards.reverse());
 });
 
 export { formValidator };

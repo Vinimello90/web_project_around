@@ -191,9 +191,10 @@ fetchDataApi().then(([user, cards]) => {
                 });
               }
               if (evt.target.classList.contains("button_like")) {
-                editLikeApi({ id, isLiked }).then(() =>
-                  evt.target.classList.toggle("button_like_activate")
-                );
+                editLikeApi({ id, isLiked }).then(() => {
+                  evt.target.classList.toggle("button_like_activate");
+                  createCard.setLikeStatus(!isLiked);
+                });
               }
               if (evt.target.classList.contains("card__image")) {
                 const popupWithImage = new PopupWithImage(

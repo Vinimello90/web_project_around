@@ -37,10 +37,16 @@ export default class Card {
       id: this._cardId,
       isLiked: this._isLiked,
     });
-    if (evt.target.classList.contains("button_like")) {
-      this._isLiked = !this._isLiked;
-    }
   };
+
+  // O método público setLikeStatus() recebe como parâmetro um boolean
+  // para mudar o status da propriedade privada _isLiked para verdadeiro
+  // ou falso para conseguir alterar mais de uma vez o status sem precisar
+  // recarregar a página.
+  setLikeStatus(isLiked) {
+    this._isLiked = !isLiked;
+  }
+
   // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.
   _setEventListeners = () => {
     this._cardElement

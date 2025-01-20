@@ -31,7 +31,11 @@ export default class Card {
   // O método público handleCardClick, passa como argumento o evento e as informações do card
   // para o callback para verificar qual elemento foi clicado e qual função será ativada.
   handleCardClick = (evt) => {
-    this._handleCardClick(evt, this._title, this._link);
+    this._handleCardClick(evt, {
+      title: this._title,
+      link: this._link,
+      id: this._cardId,
+    });
   };
   // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.
   _setEventListeners = () => {

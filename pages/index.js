@@ -11,7 +11,12 @@ import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { fetchDataApi } from "../components/Api.js";
+import {
+  fetchDataApi,
+  addNewCardApi,
+  editUserInfoApi,
+  deleteCardApi,
+} from "../components/Api.js";
 
 //instancia a classe FormValidator responsável na
 //validação dos formulários.
@@ -50,8 +55,10 @@ profileBtnElement.addEventListener("click", () => {
   const popupProfile = new PopupWithForm(
     {
       handleForm: ({ name, job }) => {
-        userInfo.setUserInfo({ name, job });
-        popupProfile.close();
+        editUserInfoApi(name, job).then(({ name, about: job }) => {
+          userInfo.setUserInfo({ name, job });
+          popupProfile.close();
+        });
       },
     },
     ".popup_form-profile"
@@ -83,57 +90,65 @@ addBtnElement.addEventListener("click", () => {
             // criação dos cards.
             renderer: (item) => {
               const noCards = galleryCardsElement.querySelector(".no-cards");
-              const createCard = new Card(
-                {
-                  title: item.title,
-                  link: item.link,
-                  // handleCardClick é um callback que manipula os cliques dos ouvintes
-                  //  de eventos do card, passado como argumento e recebe como parâmetro
-                  // o evento e os valores do card para adicionar a popup.
-                  handleCardClick: (evt, title, link) => {
-                    if (evt.target.classList.contains("button_remove")) {
-                      // remove o card se clicado no botão de fechar,
-                      // e chama o método da classe Card para verificar
-                      // se contém card ainda na seção.
-                      evt.target.parentElement.remove();
-                      createCard.handleRenderNoCards();
-                    }
-                    if (evt.target.classList.contains("button_like")) {
-                      // adiciona a classe para ativar o like caso clicado.
-                      evt.target.classList.toggle("button_like_activate");
-                    }
-                    if (evt.target.classList.contains("card__image")) {
-                      // Instancia a classe PopupWithImage passando como argumento
-                      // os dados do card.
-                      const popupWithImage = new PopupWithImage(
-                        {
-                          title: title,
-                          link: link,
-                        },
-                        ".popup_image"
-                      );
-                      //metódo open da classe PopupWithImage para abrir a popup.
-                      popupWithImage.open();
-                    }
+              addNewCardApi(item).then((card) => {
+                const createCard = new Card(
+                  {
+                    title: card.name,
+                    link: card.link,
+                    isLiked: card.isLiked,
+                    userId: card.owner,
+                    ownerId: card.owner,
+                    cardId: card._id,
+                    // handleCardClick é um callback que manipula os cliques dos ouvintes
+                    //  de eventos do card, passado como argumento e recebe como parâmetro
+                    // o evento e os valores do card para adicionar a popup.
+                    handleCardClick: (evt, { title, link, id }) => {
+                      if (evt.target.classList.contains("button_remove")) {
+                        // remove o card se clicado no botão de fechar,
+                        // e chama o método da classe Card para verificar
+                        // se contém card ainda na seção.
+                        deleteCardApi(id).then(() => {
+                          evt.target.parentElement.remove();
+                          createCard.handleRenderNoCards();
+                        });
+                      }
+                      if (evt.target.classList.contains("button_like")) {
+                        // adiciona a classe para ativar o like caso clicado.
+                        evt.target.classList.toggle("button_like_activate");
+                      }
+                      if (evt.target.classList.contains("card__image")) {
+                        // Instancia a classe PopupWithImage passando como argumento
+                        // os dados do card.
+                        const popupWithImage = new PopupWithImage(
+                          {
+                            title: title,
+                            link: link,
+                          },
+                          ".popup_image"
+                        );
+                        //metódo open da classe PopupWithImage para abrir a popup.
+                        popupWithImage.open();
+                      }
+                    },
                   },
-                },
-                galleryCardsElement
-              );
-              // método da classe Section que é pasasdo como callback para criar o
-              // elemento e receber como retorno o elemento para renderizar o card na página.
-              addCard.addItem(createCard.renderCard());
-              // confere se no elemento na variavel noCards está ausente a classe que esconde ele,
-              // caso verdadeiro chama a o método da classe Card que confere se há cards ou não para
-              // para renderizar a mensagem caso não haja cards.
-              !noCards.classList.contains("no-cards_hidden")
-                ? createCard.handleRenderNoCards()
-                : null;
+                  galleryCardsElement
+                );
+                // método da classe Section que é pasasdo como callback para criar o
+                // elemento e receber como retorno o elemento para renderizar o card na página.
+                addCard.addItem(createCard.renderCard());
+                // confere se no elemento na variavel noCards está ausente a classe que esconde ele,
+                // caso verdadeiro chama a o método da classe Card que confere se há cards ou não para
+                // para renderizar a mensagem caso não haja cards.
+                !noCards.classList.contains("no-cards_hidden")
+                  ? createCard.handleRenderNoCards()
+                  : null;
+                popupAddCard.close();
+              });
             },
           },
           ".gallery__cards"
         );
         addCard.renderer();
-        popupAddCard.close();
       },
     },
     ".popup_form-add-card"
@@ -153,10 +168,9 @@ fetchDataApi().then(([user, cards]) => {
   });
   // Renderiza o avatar do perfil à página.
   userInfo.setUserAvatar({ avatar: user.avatar });
-
   const addInitialCards = new Section(
     {
-      items: cards,
+      items: cards.reverse(),
       renderer: (item) => {
         const noCards = galleryCardsElement.querySelector(".no-cards");
         const createCard = new Card(
@@ -167,10 +181,12 @@ fetchDataApi().then(([user, cards]) => {
             userId: user._id,
             ownerId: item.owner,
             cardId: item._id,
-            handleCardClick: (evt, title, link) => {
+            handleCardClick: (evt, { title, link, id }) => {
               if (evt.target.classList.contains("button_remove")) {
-                evt.target.parentElement.remove();
-                createCard.handleRenderNoCards();
+                deleteCardApi(id).then(() => {
+                  evt.target.parentElement.remove();
+                  createCard.handleRenderNoCards();
+                });
               }
               if (evt.target.classList.contains("button_like")) {
                 evt.target.classList.toggle("button_like_activate");
@@ -197,7 +213,6 @@ fetchDataApi().then(([user, cards]) => {
     },
     ".gallery__cards"
   );
-
   //Renderiza os cards iniciais à página.
   addInitialCards.renderer();
 });

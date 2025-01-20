@@ -19,6 +19,33 @@ class Api {
       .catch((err) => console.log(err));
   }
 
+  addNewCard({ body }) {
+    return fetch(`${this.baseUrl}/cards/`, {
+      method: "POST",
+      headers: this.headers,
+      body: body,
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .then((card) => card)
+      .catch((err) => console.log(err));
+  }
+
+  deleteCard(id) {
+    return fetch(`${this.baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this.headers.authorization,
+      },
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
@@ -33,6 +60,19 @@ class Api {
       })
       .catch((err) => console.log(err));
   }
+
+  editUserInfo({ body }) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: body,
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .then((userInfo) => userInfo)
+      .catch((err) => console.log(err));
+  }
 }
 
 const api = new Api({
@@ -45,4 +85,34 @@ const api = new Api({
 
 export function fetchDataApi() {
   return Promise.all([api.getUserInfo(), api.getInitialCards()]);
+}
+
+export function addNewCardApi({ title, link }) {
+  return api.addNewCard({
+    body: JSON.stringify({
+      name: title,
+      link: link,
+    }),
+  });
+}
+
+export function editUserInfoApi(name, job) {
+  return api.editUserInfo({
+    body: JSON.stringify({
+      name: name,
+      about: job,
+    }),
+  });
+}
+
+export function editAvatarApi(avatar) {
+  return api.editUserInfo({
+    body: JSON.stringify({
+      avatar: avatar,
+    }),
+  });
+}
+
+export function deleteCardApi(id) {
+  return api.deleteCard(id);
 }

@@ -17,6 +17,8 @@ export default class Popup {
     this._popupElement.removeEventListener("click", this._clickHandler);
     this._popupElement.classList.remove("popup_opened");
   }
+
+  _loading() {}
   // O método privado _handleEscClose() verifica a tecla pressionada
   // para fechar a popup.
   _handleEscClose(evt) {

@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
   // parâmetro do construtor, assim como o seletor do pop-up do formulário.
   constructor({ handleForm }, popupSelector) {
     super(popupSelector);
-    this._popupElement = document.querySelector(popupSelector);
     this._handleForm = handleForm;
   }
 

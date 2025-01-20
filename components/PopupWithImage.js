@@ -9,7 +9,6 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
     this._title = title;
     this._link = link;
-    this._popupElement = document.querySelector(popupSelector);
   }
   // Método público que abre e adicionar os ouvintes para fechamento
   // e renderiza as informações do card ao elemento da popup na página.

@@ -5,8 +5,10 @@ import { formValidator } from "../pages/index.js";
 export default class PopupWithForm extends Popup {
   // O constructor possui a função de retorno de chamada do envio do formulário como
   // parâmetro do construtor, assim como o seletor do pop-up do formulário.
-  constructor({ handleForm }, popupSelector) {
+  constructor({ handleForm, popupSelector, buttonSelector }) {
     super(popupSelector);
+    this._btnElement = this._popupElement.querySelector(buttonSelector);
+    this._btnDefaultText = this._btnElement.textContent;
     this._handleForm = handleForm;
   }
 
@@ -46,12 +48,13 @@ export default class PopupWithForm extends Popup {
     this._popupElement
       .querySelector(".popup__form")
       .removeEventListener("submit", this._handleInput);
+    // Método reset() reseta os inputs apagando o que foi digitado.
+    this._popupElement.querySelector(".popup__form").reset();
     //Chama o método público resetInputValidation() da classe FormValidator
     // para resetar a validação do formulário, é passado como argumento
     // o elemento do formulário.
     formValidator.resetInputValidation(
       this._popupElement.querySelector(".popup__form")
     );
-    this._popupElement.querySelector(".popup__form").reset();
   }
 }

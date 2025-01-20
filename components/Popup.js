@@ -3,7 +3,7 @@
 export default class Popup {
   // O constructor recebe como parâmetro a classe seletora do
   // elemento da popup
-  constructor(popupSelector) {
+  constructor(popupSelector, buttonSelector) {
     this._popupElement = document.querySelector(popupSelector);
   }
   // O método público open() adiciona a classe que vai mostrar a popup ná pagina.
@@ -18,7 +18,13 @@ export default class Popup {
     this._popupElement.classList.remove("popup_opened");
   }
 
-  _loading() {}
+  loading(status) {
+    if (status) {
+      this._btnElement.textContent = "Salvando...";
+    } else {
+      this._btnElement.textContent = this._btnDefaultText;
+    }
+  }
   // O método privado _handleEscClose() verifica a tecla pressionada
   // para fechar a popup.
   _handleEscClose(evt) {

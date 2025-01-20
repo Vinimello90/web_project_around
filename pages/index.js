@@ -53,17 +53,19 @@ profileBtnElement.addEventListener("click", () => {
   // para resetar e verificar novamente o formulário com as informações do perfil
   // adicionadas, é passado como argumento o elemento do formulário.
   formValidator.resetInputValidation(popupProfileForm);
-  const popupProfile = new PopupWithForm(
-    {
-      handleForm: ({ name, job }) => {
-        editUserInfoApi(name, job).then(({ name, about: job }) => {
+  const popupProfile = new PopupWithForm({
+    handleForm: ({ name, job }) => {
+      popupProfile.loading(true);
+      editUserInfoApi(name, job)
+        .then(({ name, about: job }) => {
           userInfo.setUserInfo({ name, job });
           popupProfile.close();
-        });
-      },
+        })
+        .finally(() => popupProfile.loading(false));
     },
-    ".popup_form-profile"
-  );
+    popupSelector: ".popup_form-profile",
+    buttonSelector: ".button_popup-submit",
+  });
   popupProfile.setEventListeners();
   popupProfile.open();
 });
@@ -72,26 +74,27 @@ profileBtnElement.addEventListener("click", () => {
 // que instancia classe PopupwithForm para abrir o popup do formulário
 // para adicionar um novo card.
 addBtnElement.addEventListener("click", () => {
-  const popupAddCard = new PopupWithForm(
-    {
-      // handleForm é um callback passado como argumento, que recebe os valores como
-      // paramentro e instancia a classe Section que fica responsável por
-      // renderizar na página o card.
-      handleForm: ({ title, link }) => {
-        const addCard = new Section(
-          {
-            items: [
-              {
-                title,
-                link,
-              },
-            ],
-            // renderer é um callback passado como argumento, recebe um objeto como
-            // parâmetro com os valores para o card, e instancia a classe Card para
-            // criação dos cards.
-            renderer: (item) => {
-              const noCards = galleryCardsElement.querySelector(".no-cards");
-              addNewCardApi(item).then((card) => {
+  const popupAddCard = new PopupWithForm({
+    // handleForm é um callback passado como argumento, que recebe os valores como
+    // paramentro e instancia a classe Section que fica responsável por
+    // renderizar na página o card.
+    handleForm: ({ title, link }) => {
+      const addCard = new Section(
+        {
+          items: [
+            {
+              title,
+              link,
+            },
+          ],
+          // renderer é um callback passado como argumento, recebe um objeto como
+          // parâmetro com os valores para o card, e instancia a classe Card para
+          // criação dos cards.
+          renderer: (item) => {
+            const noCards = galleryCardsElement.querySelector(".no-cards");
+            popupAddCard.loading(true);
+            addNewCardApi(item)
+              .then((card) => {
                 const createCard = new Card(
                   {
                     title: card.name,
@@ -145,16 +148,17 @@ addBtnElement.addEventListener("click", () => {
                   ? createCard.handleRenderNoCards()
                   : null;
                 popupAddCard.close();
-              });
-            },
+              })
+              .finally(() => popupAddCard.loading(false));
           },
-          ".gallery__cards"
-        );
-        addCard.renderer();
-      },
+        },
+        ".gallery__cards"
+      );
+      addCard.renderer();
     },
-    ".popup_form-add-card"
-  );
+    popupSelector: ".popup_form-add-card",
+    buttonSelector: ".button_popup-submit",
+  });
 
   popupAddCard.setEventListeners();
   popupAddCard.open();

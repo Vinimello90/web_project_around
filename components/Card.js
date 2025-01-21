@@ -1,8 +1,8 @@
-// A classe Card é responsável por estruturar e manipular os elemementos do card,
+// A classe Card é responsável por estruturar e manipular os elemementos do cartão,
 // antes de retornar o elemento para ser renderizado.
 export default class Card {
   // O constructor recebe 2 parâmetros, o primeiro com 1 objeto com 2 valores
-  // e uma função de callback, e o segundo o seletor do elemento seção da galleria de cards.
+  // e uma função de callback, e o segundo o seletor do elemento seção da galleria dos cartões.
 
   constructor(
     { title, link, isLiked, userId, ownerId, cardId, handleCardClick },
@@ -17,8 +17,8 @@ export default class Card {
     this._containerElement = galleryCardElement;
     this._handleCardClick = handleCardClick;
   }
-  // O método público handleRenderNoCards, verifica se existem ainda cards
-  // na página para exibir a mensagem caso não tenha nenhum card.
+  // O método público handleRenderNoCards, verifica se existem ainda há cartões
+  // na página para exibir a mensagem caso não tenha nenhum cartão.
   handleRenderNoCards = () => {
     const cards = this._containerElement.querySelectorAll(".card");
     const noCards = this._containerElement.querySelector(".no-cards");
@@ -28,7 +28,7 @@ export default class Card {
       noCards.classList.add("no-cards_hidden");
     }
   };
-  // O método público handleCardClick, passa como argumento o evento e as informações do card
+  // O método público handleCardClick, passa como argumento o evento e as informações do cartão
   // para o callback para verificar qual elemento foi clicado e qual função será ativada.
   handleCardClick = (evt) => {
     this._handleCardClick(evt, {
@@ -47,7 +47,7 @@ export default class Card {
     this._isLiked = status;
   }
 
-  // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao card.
+  // O método privado _setEventListeners() adiciona o ouvinte de evento de click ao cartão.
   _setEventListeners = () => {
     this._cardElement
       .querySelector(".card")
@@ -70,7 +70,7 @@ export default class Card {
     this._cardElement.querySelector(".card__title").textContent = this._title;
     this.cardLikeElement = this._cardElement.querySelector(".button_like");
     // Verifica se a propriedade oculta é verdadeira para ativar o botão de like
-    // ao carregar o card.
+    // ao carregar o cartão.
     if (this._isLiked) {
       this.cardLikeElement.classList.add("button_like_activate");
     }

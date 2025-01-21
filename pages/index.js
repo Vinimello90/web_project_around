@@ -1,8 +1,10 @@
 import {
   formListElement,
-  popupProfileForm,
+  AvatarBtnElement,
   profileBtnElement,
   addBtnElement,
+  popupAvatarForm,
+  popupProfileForm,
   galleryCardsElement,
   noCards,
 } from "../utils/constants.js";
@@ -18,6 +20,7 @@ import {
   editLikeApi,
   editUserInfoApi,
   deleteCardApi,
+  editAvatarApi,
 } from "../components/Api.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
@@ -44,7 +47,24 @@ formValidator.enableValidation();
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
-  avatarSelector: ".profile__picture",
+  avatarSelector: ".profile__avatar",
+});
+
+AvatarBtnElement.addEventListener("click", () => {
+  const popupAvatar = new PopupWithForm({
+    handleForm: ({ link }) => {
+      popupAvatar.loading(true);
+      editAvatarApi(link)
+        .then((link) => {
+          userInfo.setUserAvatar(link);
+          popupAvatar.close();
+        })
+        .finally(() => popupAvatar.loading(false));
+    },
+    popupSelector: ".popup_form-avatar",
+    buttonSelector: ".button_popup-submit",
+  });
+  popupAvatar.open();
 });
 
 // Ouvinte de eventos de clique com com função anonima de callback,

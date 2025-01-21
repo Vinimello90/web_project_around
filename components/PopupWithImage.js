@@ -15,8 +15,12 @@ export default class PopupWithImage extends Popup {
   open() {
     super.open();
     super._setEventListeners();
-    this._popupElement.querySelector(".popup__img").src = this._link;
-    this._popupElement.querySelector(".popup__img").alt = this._title;
+    this.imgElement = this._popupElement.querySelector(".popup__img");
+    this.imgElement.src = this._link;
+    this.imgElement.alt = this._title;
+    this.imgElement.onerror = () => {
+      this.imgElement.src = "../images/imagem-nao-disponivel.png";
+    };
     this._popupElement.querySelector(".popup__title").textContent = this._title;
   }
 }

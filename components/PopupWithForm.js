@@ -39,12 +39,11 @@ export default class PopupWithForm extends Popup {
   // de todos os campos de entrada e passa como argumento para _handleForm().
   _getInputValues(evt) {
     evt.preventDefault();
-    this._inputValue1 = this._popupElement.querySelectorAll(".input")[0];
-    this._inputValue2 = this._popupElement.querySelectorAll(".input")[1];
-    this._handleForm({
-      [this._inputValue1.name]: this._inputValue1.value,
-      [this._inputValue2.name]: this._inputValue2.value,
+    this.inputValues = {};
+    this._popupElement.querySelectorAll(".input").forEach((inputValue) => {
+      this.inputValues[inputValue.name] = inputValue.value;
     });
+    this._handleForm(this.inputValues);
   }
 
   // No método pai foi modificado o setEventListeners().

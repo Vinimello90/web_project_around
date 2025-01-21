@@ -13,6 +13,7 @@ export default class UserInfo {
     return {
       currentName: this._NameElement.textContent,
       currentJob: this._JobElement.textContent,
+      currentAvatar: this._avatarElement.src,
     };
   }
 

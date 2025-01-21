@@ -18,6 +18,30 @@
   </head>
   <body>
     <div class="page">
+      <div class="popup popup_form-avatar">
+        <div class="popup__container">
+          <h2 class="popup__title">Alterar a foto do perfil</h2>
+          <button class="button button_close"></button>
+          <form class="popup__form" name="avatar" novalidate>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="url"
+                  class="input input_popup-avatar"
+                  placeholder="Link de imagem"
+                  name="link"
+                  id="error_avatar"
+                  required
+                />
+                <span class="popup__error popup__error_avatar"> </span>
+              </label>
+              <button type="submit" class="button button_popup-submit">
+                Salvar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
       <div class="popup popup_form-profile">
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
@@ -130,7 +154,10 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img src="" alt="" class="profile__picture" />
+          <div class="profile__avatar-container">
+            <button type="button" class="profile__avatar-button"></button>
+            <img src="" alt="" class="profile__avatar" />
+          </div>
           <div class="profile__info">
             <div class="profile__name-button-container">
               <h1 class="profile__name"></h1>

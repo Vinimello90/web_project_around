@@ -75,6 +75,19 @@ class Api {
       .catch((err) => console.log(err));
   }
 
+  editUserAvatar({ body }) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: body,
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .then((userInfo) => userInfo)
+      .catch((err) => console.log(err));
+  }
+
   editUserInfo({ body }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
@@ -97,11 +110,11 @@ const api = new Api({
   },
 });
 
-export function fetchDataApi() {
+function fetchDataApi() {
   return Promise.all([api.getUserInfo(), api.getInitialCards()]);
 }
 
-export function addNewCardApi({ title, link }) {
+function addNewCardApi({ title, link }) {
   return api.addNewCard({
     body: JSON.stringify({
       name: title,
@@ -110,14 +123,14 @@ export function addNewCardApi({ title, link }) {
   });
 }
 
-export function editLikeApi({ id, isLiked }) {
+function editLikeApi({ id, isLiked }) {
   return api.editLikeStatus({
     method: !isLiked ? "PUT" : "DELETE",
     id,
   });
 }
 
-export function editUserInfoApi(name, job) {
+function editUserInfoApi(name, job) {
   return api.editUserInfo({
     body: JSON.stringify({
       name: name,
@@ -126,14 +139,23 @@ export function editUserInfoApi(name, job) {
   });
 }
 
-export function editAvatarApi(avatar) {
-  return api.editUserInfo({
+function editAvatarApi(avatar) {
+  return api.editUserAvatar({
     body: JSON.stringify({
       avatar: avatar,
     }),
   });
 }
 
-export function deleteCardApi(id) {
+function deleteCardApi(id) {
   return api.deleteCard(id);
 }
+
+export {
+  fetchDataApi,
+  addNewCardApi,
+  editLikeApi,
+  editUserInfoApi,
+  editAvatarApi,
+  deleteCardApi,
+};

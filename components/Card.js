@@ -1,4 +1,4 @@
-// A classe Card que é responsável por estruturar e manipular os elemementos do card,
+// A classe Card é responsável por estruturar e manipular os elemementos do card,
 // antes de retornar o elemento para ser renderizado.
 export default class Card {
   // O constructor recebe 2 parâmetros, o primeiro com 1 objeto com 2 valores
@@ -58,8 +58,6 @@ export default class Card {
   renderCard = () => {
     this._cardTemplate = document.querySelector("#card-template").content;
     this._cardElement = this._cardTemplate.cloneNode(true);
-    // Adiciona a id do card.
-    this._cardElement.querySelector(".card").setAttribute("id", this._cardId);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.src = this._link;
     this._cardImageElement.alt = this._title;

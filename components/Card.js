@@ -74,8 +74,8 @@ export default class Card {
     if (this._isLiked) {
       this.cardLikeElement.classList.add("button_like_activate");
     }
-    // Verifica se o id do proprietário do card é diferente do id do
-    // usuário para remover o botão de deletar o card caso não seja do
+    // Verifica se o id do proprietário do cartão é diferente do id do
+    // usuário para remover o botão de deletar o cartão caso não seja do
     // usuário
     if (this._ownerId !== this._userId) {
       this._cardElement.querySelector(".button_remove").remove();

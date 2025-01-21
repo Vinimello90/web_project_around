@@ -3,7 +3,6 @@ import {
   AvatarBtnElement,
   profileBtnElement,
   addBtnElement,
-  popupAvatarForm,
   popupProfileForm,
   galleryCardsElement,
   noCards,

@@ -22,9 +22,11 @@ export default class UserInfo {
     this._NameElement.textContent = name;
     this._JobElement.textContent = job;
   }
-
+  // Método público setUserAvatar() renderiza a nova imagem do avatar do perfil à página.
   setUserAvatar({ avatar }) {
     this._avatarElement.src = avatar;
+    // Caso o link esteja inválido carrega uma imagem nova no lugar indicando que a
+    // a imagem não esta disponivel.
     this._avatarElement.onerror = () => {
       this._avatarElement.src = "../images/imagem-nao-disponivel.png";
     };

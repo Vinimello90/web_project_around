@@ -84,7 +84,7 @@ No JavaScript foi utilizado o método `querySelector()` para selecionar os eleme
 
 Foi criado uma classe para usar a API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, alterar ou remover do servidor que necessita de um `token` para autorizar a solicitação. E foram adicionado funções e métodos para interagir com o usuário indicando quando alguma solicitação está sendo processada.
 
-- Fo adicionado método a classe da popup para alterar o botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
+- Fo adicionado método a classe Popup para alterar o botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
 
 <img src="./images/saving_button.png" alt="" width="100%">
 

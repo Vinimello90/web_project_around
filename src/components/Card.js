@@ -65,7 +65,7 @@ export default class Card {
     // e chamara a função anonima para carregar um imagem indicando
     //  que a imagem original não está disponivel.
     this._cardImageElement.onerror = () => {
-      this._cardImageElement.src = "../images/no_image_avaible.png";
+      this._cardImageElement.src = "./images/no_image_avaible.png";
     };
     this._cardElement.querySelector(".card__title").textContent = this._title;
     this.cardLikeElement = this._cardElement.querySelector(".button_like");

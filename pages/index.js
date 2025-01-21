@@ -225,7 +225,9 @@ fetchDataApi().then(([user, cards]) => {
   // Renderiza o avatar do perfil à página.
   userInfo.setUserAvatar({ avatar: user.avatar });
   // função  instância a classe Section que é responsável por iniciar a construção do card e
-  // renderizar à página.
+  // renderizar à página, é passado como argumento a array com os dados dos cartões usando
+  // o método reverse() para inveter a ordem da array e carregar os dados na ordem
+  // correta.
   generateCards(cards.reverse());
 });
 

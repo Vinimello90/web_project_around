@@ -17,7 +17,8 @@ export default class Popup {
     this._popupElement.removeEventListener("click", this._clickHandler);
     this._popupElement.classList.remove("popup_opened");
   }
-
+  // Método público loading() desativa e adiciona um aviso de salvando ao botão de submit caso o status
+  // seja "true" e caso seja "false" volta o texto padrão do botão.
   loading(status) {
     if (status) {
       this._btnElement.textContent = "Salvando...";

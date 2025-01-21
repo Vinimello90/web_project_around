@@ -119,7 +119,7 @@ class Api {
   }
 }
 
-// Instancia a classe Api para fazer as solicitações da API.
+// instância a classe Api para fazer as solicitações da API.
 const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
   headers: {

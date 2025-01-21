@@ -23,7 +23,7 @@ import {
 } from "../components/Api.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
-//instancia a classe FormValidator responsável na
+//instância classe FormValidator responsável na
 //validação dos formulários.
 const formValidator = new FormValidator(
   {
@@ -49,15 +49,24 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
+// Ouvinte de eventos do botão de alterar o avatar para abrir a popup
+// do formulário de edição da imagem do avatar.
 AvatarBtnElement.addEventListener("click", () => {
+  // instância a classe PopupWithForm() para abrir o popup do formulário
+  // para editar a imagem do avatar.
   const popupAvatar = new PopupWithForm({
     handleForm: ({ link }) => {
+      // Método loading("true") da classe Popup() que adiciona um aviso
+      // de salvando ao botão de submit e desativa o botão enquanto aguarda a solicitação da API.
       popupAvatar.loading(true);
+      // Chama a função que chama o método da classe API, que solicita a alteração da imagem do avatar
+      // e retorna os dados alterados se tiver sucesso ao método then().
       editAvatarApi(link)
         .then((link) => {
           userInfo.setUserAvatar(link);
           popupAvatar.close();
         })
+        // Método loading("false") da classe Popup() volta o texto padrão do botão
         .finally(() => popupAvatar.loading(false));
     },
     popupSelector: ".popup_form-avatar",
@@ -67,19 +76,21 @@ AvatarBtnElement.addEventListener("click", () => {
 });
 
 // Ouvinte de eventos de clique com com função anonima de callback,
-// que instancia a classe PopupwithForm para abrir o popup do formulário
+// que instância classe PopupwithForm para abrir o popup do formulário
 // para editar o perfil.
 profileBtnElement.addEventListener("click", () => {
   const { currentName, currentJob } = userInfo.getUserInfo();
   document.forms.profile.name.value = currentName;
   document.forms.profile.job.value = currentJob;
-  //Chama o método público resetInputValidation() da classe FormValidator
+  // Chama o método resetInputValidation() da classe FormValidator
   // para resetar e verificar novamente o formulário com as informações do perfil
   // adicionadas, é passado como argumento o elemento do formulário.
   formValidator.resetInputValidation(popupProfileForm);
   const popupProfile = new PopupWithForm({
     handleForm: ({ name, job }) => {
       popupProfile.loading(true);
+      // Chama a função que chama o método da classe API, que solicita a alteração do perfil
+      // e retorna os dados alterados se tiver sucesso ao método then().
       editUserInfoApi(name, job)
         .then(({ name, about: job }) => {
           userInfo.setUserInfo({ name, job });
@@ -93,12 +104,14 @@ profileBtnElement.addEventListener("click", () => {
   popupProfile.open();
 });
 
+// Função que instância a classe Section que é responsável por iniciar a construção do card e
+// renderizar à página.
 function generateCards(cards) {
   const addCard = new Section(
     {
       items: cards,
       // renderer é um callback passado como argumento, recebe um objeto como
-      // parâmetro com os valores para o card, e instancia a classe Card para
+      // parâmetro com os valores para o card, e instância classe Card para
       // criação dos cards.
       renderer: (card) => {
         const createCard = new Card(
@@ -114,14 +127,17 @@ function generateCards(cards) {
             // o evento e os valores do card para adicionar a popup.
             handleCardClick: (evt, { title, link, id, isLiked }) => {
               if (evt.target.classList.contains("button_remove")) {
-                // remove o card se clicado no botão de fechar,
-                // e chama o método da classe Card para verificar
-                // se contém card ainda na seção.
+                // Instância classe PopupWithConfirmation() responsável pela remoção
+                // do cartã caso confirmado
                 const popupConfirmation = new PopupWithConfirmation({
                   handleConfirmation: () => {
+                    // Chama a função que chama o método da classe API, que solicita a remoção do cartão
+                    // e retorna ao método then() se tiver sucesso.
                     deleteCardApi(id)
                       .then(() => {
+                        // remove o card da página.
                         evt.target.parentElement.remove();
+                        // verifica se contém card ainda na galeria.
                         createCard.handleRenderNoCards();
                       })
                       .finally(() => popupConfirmation.close());
@@ -132,13 +148,15 @@ function generateCards(cards) {
                 popupConfirmation.open();
               }
               if (evt.target.classList.contains("button_like")) {
+                // Chama a função que chama o método da classe API, que solicita a alteração do status do like
+                // e retorna ao método then() se tiver sucesso.
                 editLikeApi({ id, isLiked }).then(({ isLiked: status }) => {
                   evt.target.classList.toggle("button_like_activate");
                   createCard.setLikeStatus(status);
                 });
               }
               if (evt.target.classList.contains("card__image")) {
-                // Instancia a classe PopupWithImage passando como argumento
+                // instância classe PopupWithImage passando como argumento
                 // os dados do card.
                 const popupWithImage = new PopupWithImage(
                   {
@@ -170,18 +188,21 @@ function generateCards(cards) {
   addCard.renderer();
 }
 
-// Ouvinte de eventos de clique com com função anonima de callback,
-// que instancia classe PopupwithForm para abrir o popup do formulário
-// para adicionar um novo card.
+// Ouvinte de eventos do botão que abre a popup do formulário
+// para adicionar um novo cartão.
 addBtnElement.addEventListener("click", () => {
   const popupAddCard = new PopupWithForm({
     // handleForm é um callback passado como argumento, que recebe os valores como
-    // paramentro e instancia a classe Section que fica responsável por
+    // parâmetro e instância classe Section que fica responsável por
     // renderizar na página o card.
     handleForm: ({ title, link }) => {
       popupAddCard.loading(true);
+      // Chama a função que chama o método da classe API, que solicita adição dos dados
+      // do novo cartão e retorna ao método then() se tiver sucesso.
       addNewCardApi({ title, link })
         .then((card) => {
+          // função  instância a classe Section que é responsável por iniciar a construção do card e
+          // renderizar à página.
           generateCards([card]);
           popupAddCard.close();
         })
@@ -193,8 +214,8 @@ addBtnElement.addEventListener("click", () => {
   popupAddCard.open();
 });
 
-// Função fetchDataApi() requisita as informações do perfil
-// e dos cards da API através da classe Api.
+// Função fetchDataApi() chama o método da classe Api, que solicita os dados
+// do usuário e dos cartões e retorna ao método then().
 fetchDataApi().then(([user, cards]) => {
   // Renderiza as informações do perfil à página.
   userInfo.setUserInfo({
@@ -203,6 +224,8 @@ fetchDataApi().then(([user, cards]) => {
   });
   // Renderiza o avatar do perfil à página.
   userInfo.setUserAvatar({ avatar: user.avatar });
+  // função  instância a classe Section que é responsável por iniciar a construção do card e
+  // renderizar à página.
   generateCards(cards.reverse());
 });
 

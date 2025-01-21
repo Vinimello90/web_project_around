@@ -19,7 +19,7 @@ export default class PopupWithImage extends Popup {
     this.imgElement.src = this._link;
     this.imgElement.alt = this._title;
     this.imgElement.onerror = () => {
-      this.imgElement.src = "../images/imagem-nao-disponivel.png";
+      this.imgElement.src = "../images/no_image_avaible.png";
     };
     this._popupElement.querySelector(".popup__title").textContent = this._title;
   }

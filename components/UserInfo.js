@@ -28,7 +28,7 @@ export default class UserInfo {
     // Caso o link esteja inválido carrega uma imagem nova no lugar indicando que a
     // a imagem não esta disponivel.
     this._avatarElement.onerror = () => {
-      this._avatarElement.src = "../images/imagem-nao-disponivel.png";
+      this._avatarElement.src = "../images/no_image_avaible.png";
     };
   }
 }

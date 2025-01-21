@@ -14,12 +14,17 @@ Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para ad
 - Unidades de medida relativas
 - Media queries
 - JavaScript
+- API
 
 ## Descrição das Tecnologias e Técnicas Utilizadas
 
 ### HTML semântico
 
-O `HTML semântico` foi aplicado para tornar o código mais compreensível, enquanto a `metodologia BEM` facilita a manutenção e a compreensão do código.
+O `HTML semântico` foi aplicado para tornar o código mais compreensível.
+
+### Metodologia BEM
+
+A `metodologia BEM` facilita a manutenção e a compreensão do código.
 
 ### Flexbox
 
@@ -75,8 +80,22 @@ No JavaScript foi utilizado o método `querySelector()` para selecionar os eleme
 
 <img src="./images/popup_validation.png" alt="" width="100%">
 
+### API
+
+Foi criado uma classe para API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, alterar ou remover do servidor. E foram adicionado funções e métodos para interagir com o usuário indicando quando alguma solicitação está sendo processada.
+
+- Fo adicionado método a classe da popup para alterar o botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
+
+<img src="./images/saving_button.png" alt="" width="100%">
+
+<br>
+
+- Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
+
+<img src="./images/confirmation.png" alt="" width="100%">
+
 #### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around/">aqui</a>.
 
 ## Planos de melhoria do projeto
 
-- Backend para salvar as alterações feita pelo usuário em um banco de dados.
+- Sistema de login e autenticação de usuário.

@@ -94,7 +94,7 @@ Foi criado uma classe para usar a API que permite interagir com dados externos, 
 
 <img src="./src/images/confirmation.png" alt="" width="100%">
 
-#### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around">aqui</a>.
+#### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around" target="_blank">aqui</a>.
 
 ## Planos de melhoria do projeto
 

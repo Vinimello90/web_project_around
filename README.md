@@ -36,7 +36,7 @@ O `Grid` foi utilizado nos cartões das fotos da seção "gallery" para criar um
 
 - Seção "Gallery"
 
-<img src=".src/images/gallery.png" alt="" width="100%">
+<img src="./src/images/gallery.png" alt="" width="100%">
 
 ### Pseudo-classe
 

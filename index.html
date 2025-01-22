@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Vinicius B. Mello" />
+    <meta
+      name="description"
+      content="Around the U.S. - EUA Afora é uma pagina interativa para o usuário adicionar, remover ou curtir fotos"
+    />
+    <meta
+      name="keywords"
+      content="Around the U.S., EUA Afora, foto, compartilhar, curtir"
+    />
+    <title>Around the U.S. - EUA Afora</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <link href="./pages/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="popup popup_form-avatar">
+        <div class="popup__container">
+          <h2 class="popup__title">Alterar a foto do perfil</h2>
+          <button class="button button_close"></button>
+          <form class="popup__form" name="avatar" novalidate>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="url"
+                  class="input input_popup-avatar"
+                  placeholder="Link de imagem"
+                  name="link"
+                  id="error_avatar"
+                  required
+                />
+                <span class="popup__error popup__error_avatar"> </span>
+              </label>
+              <button type="submit" class="button button_popup-submit">
+                Salvar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_form-profile">
+        <div class="popup__container">
+          <h2 class="popup__title">Editar perfil</h2>
+          <button class="button button_close"></button>
+          <form class="popup__form" name="profile" novalidate>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-name"
+                  placeholder="Nome"
+                  name="name"
+                  id="error_name"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="popup__error popup__error_name"></span>
+              </label>
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-job"
+                  placeholder="Sobre mim"
+                  name="job"
+                  id="error_job"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                />
+                <span class="popup__error popup__error_job"> </span>
+              </label>
+              <button type="submit" class="button button_popup-submit">
+                Salvar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_form-add-card">
+        <div class="popup__container">
+          <h2 class="popup__title">Novo local</h2>
+          <button class="button button_close"></button>
+          <form class="popup__form" name="add" novalidate>
+            <fieldset class="popup__fieldset">
+              <label class="popup__form-field">
+                <input
+                  type="text"
+                  class="input input_popup-title"
+                  placeholder="Título"
+                  name="title"
+                  id="error_title"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+                <span class="popup__error popup__error_title">
+                  Preencha este campo.
+                </span>
+              </label>
+              <label class="popup__form-field">
+                <input
+                  type="url"
+                  class="input input_popup-link"
+                  placeholder="Link de imagem"
+                  name="link"
+                  id="error_link"
+                  required
+                />
+                <span class="popup__error popup__error_link">
+                  Preencha este campo.
+                </span>
+              </label>
+              <button type="submit" class="button button_popup-submit">
+                Criar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_confirmation">
+        <div class="popup__container popup__container_confirmation">
+          <h2 class="popup__title popup__title_confirmation">Tem certeza?</h2>
+          <button class="button button_close"></button>
+          <button
+            type="button"
+            class="button button_popup-submit button_popup_confirmation"
+          >
+            Sim
+          </button>
+        </div>
+      </div>
+      <div class="popup popup_image">
+        <div class="popup__container popup__container_image">
+          <button class="button button_close button_close-image"></button>
+          <img
+            src="https://images.unsplash.com/photo-1670844699961-f1eb1793987a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="popup__img"
+            alt="Lago tenaya"
+          />
+          <p class="popup__title popup__title_image">Lago tenaya</p>
+        </div>
+      </div>
+      <header class="header">
+        <img
+          src="./images/logo.svg"
+          alt="logotipo EUA Afora"
+          class="header__logo"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <div class="profile__avatar-container">
+            <button type="button" class="profile__avatar-button"></button>
+            <img src="" alt="" class="profile__avatar" />
+          </div>
+          <div class="profile__info">
+            <div class="profile__name-button-container">
+              <h1 class="profile__name"></h1>
+              <button class="button button_edit"></button>
+            </div>
+            <p class="profile__job"></p>
+          </div>
+          <button class="button button_add"></button>
+        </section>
+        <section class="gallery">
+          <ul class="gallery__cards">
+            <li class="no-cards">
+              <p class="no-cards__text">Ainda não há cartões</p>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2024 Around The U.S.</p>
+      </footer>
+      <template id="card-template">
+        <li class="card">
+          <img src="" alt="" class="card__image" />
+          <button class="button button_remove"></button>
+          <div class="card__title-container">
+            <h2 class="card__title"></h2>
+            <button class="button button_like"></button>
+          </div>
+        </li>
+      </template>
+      <script type="module" src="./pages/index.js" charset="UTF-8"></script>
+    </div>
+  </body>
+</html>

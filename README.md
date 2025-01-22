@@ -36,13 +36,13 @@ O `Grid` foi utilizado nos cartões das fotos da seção "gallery" para criar um
 
 - Seção "Gallery"
 
-<img src="./images/gallery.png" alt="" width="100%">
+<img src=".src/images/gallery.png" alt="" width="100%">
 
 ### Pseudo-classe
 
 Foi aplicada a pseudo-classe `:hover` para mudar o estilo na parte interativa quando o usuário passar o cursor sobre o elemento, e a pseudo-classe `:active` quando o elemento for clicado.
 
-<p align="center"><img src="./images/pseudo-classes.png" alt="" width="60%"></p>
+<p align="center"><img src="./src/images/pseudo-classes.png" alt="" width="60%"></p>
 
 ### Media Queries
 
@@ -52,7 +52,7 @@ As `media queries` foram implementadas para ajustar o layout de acordo com os po
 - 768-1280px (785px)
 - 1280px e acima
 
-<p align="center"><img src="./images//screen-size.png" alt="" width="90%"></p>
+<p align="center"><img src="./src/images/screen-size.png" alt="" width="90%"></p>
 
 ### JavaScript
 
@@ -60,25 +60,25 @@ No JavaScript foi utilizado o método `querySelector()` para selecionar os eleme
 
 - Popup para editar a seção "profile" e para adicionar novos cartões a seção da "gallery".
 
-<img src="./images/profile-edit.png" alt="" width="49.8%"> <img src="./images/add-card.png" alt="" width="49.4%">
+<img src="./src/images/profile-edit.png" alt="" width="49.8%"> <img src="./src/images/add-card.png" alt="" width="49.4%">
 
 <br>
 
 - Foi usado uma função para ativar o botão do like ao clicar e foi adicionado um botão com a função de remover o cartão desejado ao clicar.
 
-<p align="center"><img src="./images/cards_like_remove_btn.png" alt="" width="100%"></p>
+<p align="center"><img src="./src/images/cards_like_remove_btn.png" alt="" width="100%"></p>
 
 <br>
 
 - Foi usada uma função para verificar os cartões e caso não tenha nenhum cartão sera exibido uma mensagem.
 
-<img src="./images/no-cards.png" alt="" width="100%">
+<img src="./src/images/no-cards.png" alt="" width="100%">
 
 <br>
 
 - Foram usadas funções para validar os formulários e aprimorar a UX do popup, desabilitando o botão de `submit`, sublinhando de vermelho o `input` inválido e exibindo uma mensagem abaixo do `input` explicando o que está invalidando o formulário para que o botão de `submit` seja habilitado.
 
-<img src="./images/popup_validation.png" alt="" width="100%">
+<img src="./src/images/popup_validation.png" alt="" width="100%">
 
 ### API
 
@@ -86,13 +86,13 @@ Foi criado uma classe para usar a API que permite interagir com dados externos, 
 
 - Fo adicionado método a classe Popup para alterar o botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
 
-<img src="./images/saving_button.png" alt="" width="100%">
+<img src="./src/images/saving_button.png" alt="" width="100%">
 
 <br>
 
 - Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
 
-<img src="./images/confirmation.png" alt="" width="100%">
+<img src="./src/images/confirmation.png" alt="" width="100%">
 
 #### Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around/src">aqui</a>.
 

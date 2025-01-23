@@ -93,6 +93,10 @@
     padding: 25px 22px;
   }
 
+  .popup__container_avatar {
+    height: fit-content;
+  }
+
   .popup__container_confirmation {
     height: fit-content;
   }

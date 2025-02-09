@@ -25,6 +25,7 @@ export default class Popup {
       this._btnElement.setAttribute("disabled", "disabled");
     } else {
       this._btnElement.textContent = this._btnDefaultText;
+      this._btnElement.removeAttribute("disabled");
     }
   }
   // O método privado _handleEscClose() verifica a tecla pressionada

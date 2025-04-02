@@ -1,10 +1,12 @@
 # Around the U.S. - EUA Afora
 
-Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para adicionar, remover ou curtir fotos. O layout é responsivo, adaptando-se a diferentes tamanhos de tela, utilizando `unidades de medida relativas` e `media queries` para ajustar o design conforme os pontos de interrupção, garantindo que o layout permaneça intacto e não quebre. Foi usado `JavaScript` para adicionar funções aos elementos da página e refactorado em modulos e classes facilitando o processo de manutenção e reusabilidade do código.
+O projeto **Around the U.S. - EUA Afora** foi desenvolvido para permitir que o usuário adicione, remova ou curta fotos. Seu layout é responsivo, adaptando-se a diferentes tamanhos de tela por meio de **unidades de medida relativas** e **media queries**, ajustando o design conforme os pontos de interrupção, garantindo que o layout seja consistente e não quebre. O código foi escrito em **JavaScript**, e refatorado utilizando **módulos** e **classes** para facilitar a manutenção e reusabilidade do código.
 
-**Para ver o projeto em execução clique <a href="https://vinimello90.github.io/web_project_around" target="_blank">aqui</a>.**
+![Captura de tela do projeto EUA Afora](./src/images/screenshot_fullpage.png)
 
-## Tecnologias
+**Veja o projeto em funcionamento clicando [aqui](https://vinimello90.github.io/web_project_around).**
+
+## Tecnologias e Métodos
 
 - HTML5 semântico
 - Metodologia BEM
@@ -12,7 +14,7 @@ Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para ad
 - Grid
 - Text-overflow
 - Hover
-- Pseudo-classe
+- Pseudo-classes
 - Unidades de medida relativas
 - Media queries
 - JavaScript
@@ -20,82 +22,79 @@ Este é um projeto da Around the U.S. - EUA Afora, destinado ao usuário para ad
 
 ## Descrição das Tecnologias e Técnicas Utilizadas
 
-### HTML semântico
+### HTML Semântico
 
-O `HTML semântico` foi aplicado para tornar o código mais compreensível.
+O **HTML semântico** foi aplicado para tornar o código mais legível e acessível, melhorando a compreensão e a estruturação do conteúdo.
 
 ### Metodologia BEM
 
-A `metodologia BEM` facilita a manutenção e a compreensão do código.
+A **metodologia BEM** foi adotada para melhorar a manutenção e a escalabilidade do código, tornando a estrutura de classes mais clara e intuitiva.
 
 ### Flexbox
 
-O `Flexbox` foi utilizado juntamente com `unidades de medida relativas` para organizar e otimizar a responsividade do layout.
+O **Flexbox** foi utilizado em conjunto com **unidades de medida relativas** para organizar o layout e otimizar a responsividade da página, garantindo uma boa experiência em diferentes dispositivos.
 
-### Grid e text-overflow
+### Grid e Text-overflow
 
-O `Grid` foi utilizado nos cartões das fotos da seção "gallery" para criar um layout mais organizado e melhor distribuído. A propriedade `text-overflow:ellipsis` foi aplicada em conjunto com `overflow:hidden` e `white-space: nowrap` para reduzir os textos que excedem o layout.
+A propriedade **Grid** foi usada para estruturar os cartões de fotos na seção **Gallery**, criando um layout bem distribuído. A propriedade **text-overflow: ellipsis** foi aplicada junto com **overflow: hidden** e **white-space: nowrap** para truncar textos que ultrapassam o limite do layout.
 
 - Seção "Gallery"
 
-<img src="./src/images/gallery.png" alt="captura de tela do projeto around us - EUA a fora" width="100%">
+  ![Captura de tela da galeria](./src/images/gallery.png)
 
-### Pseudo-classe
+### Pseudo-classes
 
-Foi aplicada a pseudo-classe `:hover` para mudar o estilo na parte interativa quando o usuário passar o cursor sobre o elemento, e a pseudo-classe `:active` quando o elemento for clicado.
+As **pseudo-classes** `:hover` e `:active` foram aplicadas para melhorar a interatividade do site. A primeira altera o estilo dos elementos quando o cursor passa sobre eles, enquanto a segunda é ativada quando o elemento é clicado.
 
-<p align="center"><img src="./src/images/pseudo-classes.png" alt="captura de tela do projeto around us - EUA a fora" width="60%"></p>
+![Captura de tela mostrando pseudo-classes](./src/images/pseudo-classes.png)
 
 ### Media Queries
 
-As `media queries` foram implementadas para ajustar o layout de acordo com os pontos de interrupção e garantir a responsividade em várias resoluções de tela. Foram adicionados pontos de interrupção para assegurar a responsividade, definidos com base nos intervalos:
+As **media queries** foram configuradas para garantir que o layout se ajuste corretamente em diferentes resoluções de tela. Foram definidos os seguintes pontos de interrupção:
 
 - 320-768px (590px, 650px)
 - 768-1280px (785px)
-- 1280px e acima
+- 1280px ou superior
 
-<p align="center"><img src="./src/images/screen-size.png" alt="captura de tela do projeto around us - EUA a fora" width="90%"></p>
+  ![Captura de tela de diferentes resoluções de tela](./src/images/screen-size.png)
 
 ### JavaScript
 
-No JavaScript foi utilizado o método `querySelector()` para selecionar os elementos e manipular o `DOM` adicionando o método `addEventListener()` aos botões para gerenciar as funções de abrir e fechar a popup para editar o perfil. A propriedade `textContent` foi usada para manipular e adicionar o conteúdo do perfil nos inputs quando abrir a popup, e exibir no perfil as alterações feitas no formulário após salvar, o mesmo foi aplicado para o formulário para adicionar novos cartões a galeria, foi usado o elemento `<template>` para criar o layout dos cartões, clonar com o método `cloneNode(true)` e adicionar o título e link da imagem passado através do formulário ao clone do cartão e adicionar o novo cartão ao topo da galeria usando o método `prepend()`.
+No **JavaScript**, foi utilizado o método `querySelector()` para selecionar elementos e manipular o **DOM**. Funções foram criadas para gerenciar eventos, como abrir e fechar popups para editar o perfil. Usou-se a propriedade **textContent** para manipular o conteúdo do perfil e exibir as alterações feitas pelo usuário.
 
-- Popup para editar a seção "profile" e para adicionar novos cartões a seção da "gallery".
+- **Popup para editar perfil** e adicionar novos cartões à **Gallery**:
 
-<img src="./src/images/profile-edit.png" alt="captura de tela do projeto around us - EUA a fora" width="49.8%"> <img src="./src/images/add-card.png" alt="captura de tela do projeto around us - EUA a fora" width="49.4%">
+  ![Captura de tela da edição de perfil](./src/images/profile-edit.png) ![Captura de tela da adição de novo cartão](./src/images/add-card.png)
 
-<br>
+Além disso, implementaram-se funcionalidades como:
 
-- Foi usado uma função para ativar o botão do like ao clicar e foi adicionado um botão com a função de remover o cartão desejado ao clicar.
+- Ativar/desativar o botão de **like** ao clicar.
+- Remover cartões com a funcionalidade de botão.
 
-<p align="center"><img src="./src/images/cards_like_remove_btn.png" alt="captura de tela do projeto around us - EUA a fora" width="100%"></p>
+  ![Captura de tela dos botões de like e remoção](./src/images/cards_like_remove_btn.png)
 
-<br>
+- Exibição de uma mensagem caso não haja cartões na galeria.
 
-- Foi usada uma função para verificar os cartões e caso não tenha nenhum cartão sera exibido uma mensagem.
+  ![Captura de tela sem cartões na galeria](./src/images/no-cards.png)
 
-<img src="./src/images/no-cards.png" alt="captura de tela do projeto around us - EUA a fora" width="100%">
+- Validação de formulários para melhorar a **UX** no popup exibindo uma mensagem de erro abaixo do **input** e com o botão **submit** sendo habilitado somente quando o formulário estiver válido.
 
-<br>
-
-- Foram usadas funções para validar os formulários e aprimorar a UX do popup, desabilitando o botão de `submit`, sublinhando de vermelho o `input` inválido e exibindo uma mensagem abaixo do `input` explicando o que está invalidando o formulário para que o botão de `submit` seja habilitado.
-
-<img src="./src/images/popup_validation.png" alt="captura de tela do projeto around us - EUA a fora" width="100%">
+  ![Captura de tela de validação de formulário](./src/images/popup_validation.png)
 
 ### API
 
-Foi criado uma classe para usar a API que permite interagir com dados externos, utilizando o método `fetch` atráves dos métodos de solicitações `GET`, `POST`, `PATCH`, `PUT` e `DELETE` para solicitar os dados do usuário ou dos cartões, alterar ou remover do servidor que necessita de um `token` para autorizar a solicitação. E foram adicionado funções e métodos para interagir com o usuário indicando quando alguma solicitação está sendo processada.
+Foi criada uma classe para interagir com a **API**, permitindo realizar solicitações **GET**, **POST**, **PATCH**, **PUT** e **DELETE** para obter, adicionar ou modificar dados no servidor. A autenticação é feita por meio de um **token**.
 
-- Fo adicionado método a classe Popup para alterar o botão de salvar indicando que está salvando e ao finalizar o processo vai voltar o texto padrão do botão e fechar a popup.
+Funções adicionais foram implementadas para melhorar a experiência do usuário, como:
 
-<img src="./src/images/saving_button.png" alt="captura de tela do projeto around us - EUA a fora" width="100%">
+- Alterar o texto do botão de **salvar** indicando o processo de salvamento e restaurá-lo ao seu estado original após a conclusão.
 
-<br>
+  ![Captura de tela do botão de salvar](./src/images/saving_button.png)
 
-- Foi adicionado uma nova popup para fazer a confirmação da remoção do cartão, antes de enviar a solicitação de remoção pela API e remover da página.
+- Uma popup de confirmação foi adicionada para a remoção de cartões, solicitando confirmação antes de enviar a solicitação à API.
 
-<img src="./src/images/confirmation.png" alt="captura de tela do projeto around us - EUA a fora" width="100%">
+  ![Captura de tela da confirmação de remoção](./src/images/confirmation.png)
 
-## Planos de melhoria do projeto
+## Planos de Melhoria do Projeto
 
-- Sistema de login e autenticação de usuário.
+- Implementação de um sistema de **login** e **autenticação de usuário**.

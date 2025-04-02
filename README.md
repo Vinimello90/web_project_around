@@ -2,7 +2,7 @@
 
 O projeto **Around the U.S. - EUA Afora** foi desenvolvido para permitir que o usuário adicione, remova ou curta fotos. Seu layout é responsivo, adaptando-se a diferentes tamanhos de tela por meio de **unidades de medida relativas** e **media queries**, ajustando o design conforme os pontos de interrupção, garantindo que o layout seja consistente e não quebre. O código foi escrito em **JavaScript**, e refatorado utilizando **módulos** e **classes** para facilitar a manutenção e reusabilidade do código.
 
-![Captura de tela do projeto EUA Afora](./src/images/screenshot_fullpage.png)
+<img src="./src/images/screenshot_fullpage.png" alt="Captura de tela do projeto EUA Afora" />
 
 **Veja o projeto em funcionamento clicando [aqui](https://vinimello90.github.io/web_project_around).**
 
@@ -40,13 +40,13 @@ A propriedade `grid` foi usada para estruturar os cartões de fotos na seção *
 
 - Seção "Gallery"
 
-  ![Captura de tela da galeria](./src/images/gallery.png)
+  <img src="./src/images/gallery.png" alt="Captura de tela da galeria" />
 
 ### Pseudo-classes
 
 As **pseudo-classes** `:hover` e `:active` foram aplicadas para melhorar a interatividade do site. A primeira altera o estilo dos elementos quando o cursor passa sobre eles, enquanto a segunda é ativada quando o elemento é clicado.
 
-<p align=center><img src="./src/images/pseudo-classes.png" alt="Captura de tela mostrando pseudo-classes"></p>
+<p align="center"><img src="./src/images/pseudo-classes.png" alt="Captura de tela mostrando pseudo-classes" /></p>
 
 ### Media Queries
 
@@ -56,7 +56,7 @@ As **media queries** foram configuradas para garantir que o layout se ajuste cor
 - 768-1280px (785px)
 - 1280px ou superior
 
-  ![Captura de tela de diferentes resoluções de tela](./src/images/screen-size.png)
+  <img src="./src/images/screen-size.png" alt="Captura de tela de diferentes resoluções de tela" />
 
 ### JavaScript
 
@@ -64,22 +64,23 @@ No **JavaScript**, foi utilizado o método `querySelector()` para selecionar ele
 
 - **Popup para editar perfil** e adicionar novos cartões à **Gallery**:
 
-  ![Captura de tela da edição de perfil](./src/images/profile-edit.png) ![Captura de tela da adição de novo cartão](./src/images/add-card.png)
+  <img src="./src/images/profile-edit.png" alt="Captura de tela da edição de perfil" /> 
+  <img src="./src/images/add-card.png" alt="Captura de tela da adição de novo cartão" />
 
 Além disso, implementaram-se funcionalidades como:
 
 - Ativar/desativar o botão de **like** ao clicar.
 - Remover cartões com a funcionalidade de botão.
 
-  ![Captura de tela dos botões de like e remoção](./src/images/cards_like_remove_btn.png)
+  <img src="./src/images/cards_like_remove_btn.png" alt="Captura de tela dos botões de like e remoção" />
 
 - Exibição de uma mensagem caso não haja cartões na galeria.
 
-  ![Captura de tela sem cartões na galeria](./src/images/no-cards.png)
+  <img src="./src/images/no-cards.png" alt="Captura de tela sem cartões na galeria" />
 
 - Validação de formulários para melhorar a **UX** no popup exibindo uma mensagem de erro abaixo do **input** e com o botão **submit** sendo habilitado somente quando o formulário estiver válido.
 
-  ![Captura de tela de validação de formulário](./src/images/popup_validation.png)
+  <img src="./src/images/popup_validation.png" alt="Captura de tela de validação de formulário" />
 
 ### API
 
@@ -89,11 +90,11 @@ Funções adicionais foram implementadas para melhorar a experiência do usuári
 
 - Alterar o texto do botão de **salvar** indicando o processo de salvamento e restaurá-lo ao seu estado original após a conclusão.
 
-  ![Captura de tela do botão de salvar](./src/images/saving_button.png)
+  <img src="./src/images/saving_button.png" alt="Captura de tela do botão de salvar" />
 
 - Uma popup de confirmação foi adicionada para a remoção de cartões, solicitando confirmação antes de enviar a solicitação à API.
 
-  ![Captura de tela da confirmação de remoção](./src/images/confirmation.png)
+  <img src="./src/images/confirmation.png" alt="Captura de tela da confirmação de remoção" />
 
 ## Planos de Melhoria do Projeto
 
